@@ -1,6 +1,6 @@
 # Admin Feature
-  Engagement API for Admin Management
-
+  Engagement API for Admin Management. 
+  See documentation [here](doc/admin-features.yaml).
 ## Repository
 ```
 git clone https://github.com/esonpaguia/admin-feature.git
@@ -11,12 +11,18 @@ git clone https://github.com/esonpaguia/admin-feature.git
 - docker
 - docker-compose
 
+## Dev
+```
+cd admin-feature
+npm install
+DEBUG=admin-feature:* npm start
+```
+
 ## Build & Deploy
 - Startup
 ```
 docker-compose up -d --build
 ```
-- Open browser and go to http://localhost:3000
 - Shutdown
 ```
 docker-compose down -v --rmi all
