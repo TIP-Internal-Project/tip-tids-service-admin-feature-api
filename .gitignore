@@ -6,4 +6,3 @@ pids
 .grunt
 node_modules
 npm-debug.log
-bin
