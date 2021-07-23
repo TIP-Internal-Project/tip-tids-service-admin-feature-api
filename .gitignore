@@ -1,1 +1,8 @@
-node_modules/
+logs
+*.log
+pids
+*.pid
+*.seed
+.grunt
+node_modules
+npm-debug.log

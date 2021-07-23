@@ -12,8 +12,8 @@
     "url": "git+ssh://git@github.com/esonpaguia/admin-feature.git"
   },
   "keywords": [
-    "keywords",
-    "test"
+    "admin",
+    "feature"
   ],
   "author": "Eddison Paguia",
   "license": "ISC",
