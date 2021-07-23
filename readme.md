@@ -1,6 +1,6 @@
 # Admin Feature
   Engagement API for Admin Management. 
-  See documentation [here](doc/admin-features.yaml).
+  See documentation [here](doc/admin-feature.yaml).
 ## Repository
 ```
 git clone https://github.com/esonpaguia/admin-feature.git
