@@ -12,18 +12,20 @@ git clone https://github.com/esonpaguia/admin-feature.git
 - docker-compose
 
 ## Dev
-```
-cd admin-feature
-npm install
-DEBUG=admin-feature:* npm start
-```
+  1. Initialize database
+  ```
+  docker-compose up -d --build
+  ```
+  2. Initialize application
+  ```
+  npm install
+  DEBUG=admin-feature:* npm start
+  ```
+  3. Destroy
+  ```
+  docker-compose down -v --rmi all
+  ```
 
-## Build & Deploy
-- Startup
-```
-docker-compose up -d --build
-```
-- Shutdown
-```
-docker-compose down -v --rmi all
-```
+## TODO
+- create models
+- populate collection

@@ -1,9 +1,23 @@
 version: '2.0'
 
 services: 
-    web:
-        image: admin-feature
-        init: true
-        build: .
-        ports:
-          - "3000:3000"
+  web:
+    image: admin-feature
+    init: true
+    build: .
+    ports:
+      - "3000:3000"
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: test
+      MONGO_USERNAME: admin
+      MONGO_PASSWORD: example
+    ports:
+      - 27017:27017
+    volumes:
+      - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
