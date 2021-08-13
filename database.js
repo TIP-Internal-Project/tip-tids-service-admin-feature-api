@@ -8,8 +8,8 @@ mongoose.connect(config.databaseUri, {
     useUnifiedTopology: true,
 });
 
-mongoose.connection.on('connected', () => {
-  console.log("Database connection established");
+mongoose.connection.on( "connected", () => {
+  console.log( "MONGOOSE: connected" )
   console.log('Collections:');
   mongoose.connection.db.listCollections().toArray((err, names) => {
     if (err) {
@@ -20,4 +20,12 @@ mongoose.connection.on('connected', () => {
       });
     }
   });
+});
+
+mongoose.connection.on( "close", () => {
+  console.log( "MONGOOSE: connection close" )  
+});
+
+mongoose.connection.on( "error", error => {
+  console.log( "MONGOOSE: connection error", error )  
 });

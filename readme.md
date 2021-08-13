@@ -12,18 +12,11 @@ git clone https://github.com/esonpaguia/admin-feature.git
 - docker-compose
 
 ## Dev
-  1. Initialize database
-  ```
-  docker-compose up -d --build
-  ```
+  1. Initialize database. Go to service-api-database repository.
   2. Initialize application
   ```
   npm install
-  DEBUG=admin-feature:* npm start
-  ```
-  3. Destroy
-  ```
-  docker-compose down -v --rmi all
+  npm run dev
   ```
 
 ## TODO
