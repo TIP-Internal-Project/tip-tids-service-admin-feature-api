@@ -12,7 +12,7 @@ git clone https://github.com/esonpaguia/admin-feature.git
 - docker-compose
 
 ## Dev
-  1. Initialize database. Go to service-api-database repository.
+  1. Initialize database. Refer service-api-database repository.
   2. Initialize application
   ```
   npm install
