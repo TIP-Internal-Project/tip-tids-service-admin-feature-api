@@ -1,0 +1,40 @@
+{
+"events":  [
+    {
+      "eventId": 1,
+      "title": "Event 1",
+      "detail": "Detail for Event 1",
+      "venue": "Venue 1",
+      "venueDetails": "Venue Details",
+      "category": "Category",
+      "starsNum": 5,
+      "startDate": "2022-01-01T00:00:00.000Z",
+      "endDate": "2022-01-01T00:00:00.000Z",
+      "startTime": "2022-01-01T00:00:00.000Z",
+      "endTime": "2022-01-01T00:00:00.000Z",
+      "code": "ABC123",
+      "createdDate": "2022-01-01T00:00:00.000Z",
+      "createdBy": "User 1",
+      "updatedDate": "2022-01-01T00:00:00.000Z",
+      "updatedBy": "User 1"
+    },
+    {
+        "eventId": 2,
+        "title": "Event 1",
+        "detail": "Detail for Event 2",
+        "venue": "Venue 2",
+        "venueDetails": "Venue Details",
+        "category": "Category",
+        "starsNum": 5,
+        "startDate": "2022-01-01T00:00:00.000Z",
+        "endDate": "2022-01-01T00:00:00.000Z",
+        "startTime": "2022-01-01T00:00:00.000Z",
+        "endTime": "2022-01-01T00:00:00.000Z",
+        "code": "ABC123",
+        "createdDate": "2022-01-01T00:00:00.000Z",
+        "createdBy": "User 2",
+        "updatedDate": "2022-01-01T00:00:00.000Z",
+        "updatedBy": "User 2"   
+    }
+  ]
+}
