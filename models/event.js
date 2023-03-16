@@ -26,11 +26,6 @@ try {
     updatedBy: String
   });
 
-
-
-
-  
-
   Event = mongoose.model('events', eventSchema);
 }
 
