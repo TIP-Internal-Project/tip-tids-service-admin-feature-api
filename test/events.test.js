@@ -107,3 +107,16 @@ describe('Event controller', () => {
     });
   });
 });
+
+
+describe('Event controller', () =>{
+  describe('getEventById' , () => {
+    it('should return an event by id', async() => {
+      const req = {
+        
+
+      }
+    })
+
+  })
+} )

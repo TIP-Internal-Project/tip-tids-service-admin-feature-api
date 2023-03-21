@@ -1,4 +1,4 @@
-const Event = require('../models/Event');
+const Event = require('../models/event');
 
 
 
@@ -14,8 +14,6 @@ Event.schema.set('toJSON', {
 });
 
 
-
-
 class EventService {
   async createEvent(eventData) {
     const event = new Event(eventData);
@@ -24,7 +22,6 @@ class EventService {
     return event;
   }
 
- 
 
   async getEvents() {
     const events = await Event.find();
