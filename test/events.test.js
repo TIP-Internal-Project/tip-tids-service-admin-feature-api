@@ -3,6 +3,9 @@ const sinon = require('sinon');
 const EventService = require('../services/eventService');
 const eventController = require('../controllers/eventController');
 
+
+
+// Unit testing for create Event
 describe('Event controller', () => {
   describe('createEvent', () => {
     it('should create a new event', async () => {
@@ -48,6 +51,8 @@ describe('Event controller', () => {
 });
 
 
+
+// Unit Testing for getEvents
 describe('Event controller', () => {
   describe('getEvents', () => {
     it('should return a list of events', async () => {
