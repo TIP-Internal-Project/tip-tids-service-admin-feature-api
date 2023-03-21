@@ -1,0 +1,43 @@
+{
+    "events": [
+        {
+            "_id":{"$oid":"641171318cfa973bb8de43bd"},
+            "title":"sample event title",
+            "detail":"sample event detail",
+            "venue":"sample event venue",
+            "venueDetails":"sample event venue details",
+            "starsNum":3,
+            "pictureUrl":"sample event pic url",
+            "startDate":{"$date":"2023-04-20T04:00:00Z"},
+            "endDate":{"$date":"2023-04-20T04:00:00Z"},
+            "startTime":{"$date":"2023-04-20T05:00:00Z"},
+            "endTime":{"$date":"2023-04-21T03:00:00Z"},
+            "code":"420",
+            "createdBy":"sample",
+            "updatedAt":null,
+            "updatedBy":null,
+            "category":"sample event category",
+            "postEventSurveyURL":"sample post event survey url","__v":0
+        },
+        {
+            "_id":{"$oid":"641174488cfa973bb8de43c0"},
+            "title":"sample event title #2",
+            "detail":"sample event detail #2",
+            "venue":"sample event venue #2",
+            "venueDetails":"sample event venue details #2",
+            "starsNum":3,
+            "pictureUrl":"sample event pic url #2",
+            "startDate":{"$date":"2023-05-20T04:00:00Z"},
+            "endDate":{"$date":"2023-05-20T04:00:00Z"},
+            "startTime":{"$date":"2023-05-20T05:00:00Z"},
+            "endTime":{"$date":"2023-05-21T03:00:00Z"},
+            "code":"520",
+            "createdBy":"sample #2",
+            "updatedAt":null,
+            "updatedBy":null,
+            "category":"sample event category #2",
+            "postEventSurveyURL":"sample post event survey url #2",
+            "__v":0
+        }
+    ]
+}

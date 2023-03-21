@@ -1,0 +1,16 @@
+{
+    "team_members": [
+        {
+            "_id":{"$oid":"6411a9ba6ee424848e2db25e"},
+            "workdayId":10204981,
+            "lastName":"Galapin",
+            "firstName":"Christopher",
+            "middleName":"Gime",
+            "immediateSupervisor":10010586,
+            "slt":10029360,
+            "workEmail":"christopher.galapin@telusinternational.com",
+            "starsEarned":999,
+            "cop":5
+        }
+    ]
+}
