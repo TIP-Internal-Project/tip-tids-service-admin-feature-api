@@ -13,7 +13,7 @@ router.post('/addTask', overviewController.addTask);
 router.get('/getEvents', overviewController.getEvents);
 
 //for testing only
-router.post('/addEvent', overviewController.addEvent);
+//router.post('/addEvent', overviewController.addEvent);
 
 router.get('/getTeamMemberInfoById/:id', overviewController.getTeamMemberInfoById);
 

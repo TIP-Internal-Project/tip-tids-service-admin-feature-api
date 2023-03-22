@@ -5,13 +5,13 @@ const TeamMember = require('../models/TeamMember')
 class OverviewService{
 
     async getUpcomingEventsCount() {
-        const eventsCount = await Event.count();
+        const eventsCount = await Event.countDocuments();
         return eventsCount;
     }
 
     async getPendingTasksCountById(id) {
-        const tasksCount = await TaskReminder.count({createdBy:id});
-        return tasksCount;
+        const tasksCount = await TaskReminder.find({createdBy:id});
+        return tasksCount.length;
     }
 
     async getTasksById(id) {
@@ -30,10 +30,10 @@ class OverviewService{
     }
 
     //for testing only
-    async addEvent(eventBody) {
-        const event = await Event.create(eventBody);
-        return event;
-    }
+    // async addEvent(eventBody) {
+    //     const event = await Event.create(eventBody);
+    //     return event;
+    // }
 
     async getTeamMemberInfoById(id) {
         const teamMember = await TeamMember.where('workdayId', id);
