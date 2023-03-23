@@ -1,0 +1,32 @@
+{
+  "teamMembers":[
+    {
+      "_id": "6419921c90afb949ac6a0544",
+      "employeeId": "10217900",
+      "lastName": "Last",
+      "firstName": "First",
+      "jobProfile": "Job Profile",
+      "immediateManagerName": "Manager Name",
+      "immediateManagerId": "10217909",
+      "pictureUrl": "sampleURL",
+      "TIEmail": "ti@email.com",
+      "clientEmail": "client@email.com",
+      "functionalArea": "Functional Area",
+      "__v": 0
+    },
+    {
+      "_id": "6419921c90afb949ac6a0544",
+      "employeeId": "10217901",
+      "lastName": "LastNames",
+      "firstName": "FirstNames",
+      "jobProfile": "Job Profiles",
+      "immediateManagerName": "Manager Name",
+      "immediateManagerId": "10217909",
+      "pictureUrl": "sampleURL",
+      "TIEmail": "ti@email.com",
+      "clientEmail": "client@email.com",
+      "functionalArea": "Functional Area",
+      "__v": 0
+      }
+    ]
+  }
