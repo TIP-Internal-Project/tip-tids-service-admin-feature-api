@@ -35,7 +35,7 @@ describe('overview', () => {
                 const id = "10204981";
                 const { body, statusCode } = await supertest(app).get(`/overview/getPendingTasksCountById/${id}`)
                 expect(statusCode).toBe(200)
-                expect(body).toEqual({"tasksCount": [6]})
+                expect(body).toEqual(6)
             })
         })
         describe('given that the user id does not exist', () => {
@@ -43,7 +43,7 @@ describe('overview', () => {
                 const id = "10203040";
                 const { body, statusCode } = await supertest(app).get(`/overview/getPendingTasksCountById/${id}`)
                 expect(statusCode).toBe(200)
-                expect(body).toEqual({"tasksCount": [0]})
+                expect(body).toEqual(0)
             })
         })
     })
@@ -54,15 +54,13 @@ describe('overview', () => {
                 const { body, statusCode } = await supertest(app).get(`/overview/getTasksById/${id}`)
                 expect(statusCode).toBe(200)
                 expect(body).toEqual(
-                {"tasks": [
-                    [
-                        {"createdBy": "10204981", "createdDate": "2023-03-21T04:53:33.814Z", "detail": "this is my task #11", "dueDateTime": "2023-03-01T18:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "title": "task #66621", "updatedBy": null, "updatedDate": null}, 
-                        {"createdBy": "10204981", "createdDate": "2023-03-17T08:19:06.313Z", "detail": "this is my task #5", "dueDateTime": "2023-03-29T17:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "title": "task #5", "updatedBy": null, "updatedDate": null}, 
-                        {"createdBy": "10204981", "createdDate": "2023-03-17T08:17:19.888Z", "detail": "this is a my task", "dueDateTime": "2023-03-29T17:34:00.000Z", "importance": "Low", "optionalInd": "true", "pictureUrl": "sample url", "title": "task #1", "updatedBy": null, "updatedDate": null}, 
-                        {"createdBy": "10204981", "createdDate": "2023-03-17T12:35:22.912Z", "detail": "this is my task #11", "dueDateTime": "2023-03-29T17:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "title": "task #11", "updatedBy": null, "updatedDate": null}, 
-                        {"createdBy": "10204981", "createdDate": "2023-03-21T04:53:13.074Z", "detail": "this is my task #11", "dueDateTime": "2023-04-29T17:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "title": "task #11111", "updatedBy": null, "updatedDate": null}
-                    ]
-                ]})
+                [
+                        {"createdBy": "10204981", "createdDate": "2023-03-21T04:53:33.814Z", "detail": "this is my task #11", "dueDateTime": "2023-03-01T18:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "taskReminderId": expect.any(String), "title": "task #66621", "updatedBy": null, "updatedDate": null}, 
+                        {"createdBy": "10204981", "createdDate": "2023-03-17T08:19:06.313Z", "detail": "this is my task #5", "dueDateTime": "2023-03-29T17:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "taskReminderId": expect.any(String), "title": "task #5", "updatedBy": null, "updatedDate": null}, 
+                        {"createdBy": "10204981", "createdDate": "2023-03-17T08:17:19.888Z", "detail": "this is a my task", "dueDateTime": "2023-03-29T17:34:00.000Z", "importance": "Low", "optionalInd": "true", "pictureUrl": "sample url", "taskReminderId": expect.any(String), "title": "task #1", "updatedBy": null, "updatedDate": null}, 
+                        {"createdBy": "10204981", "createdDate": "2023-03-17T12:35:22.912Z", "detail": "this is my task #11", "dueDateTime": "2023-03-29T17:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "taskReminderId": expect.any(String), "title": "task #11", "updatedBy": null, "updatedDate": null}, 
+                        {"createdBy": "10204981", "createdDate": "2023-03-21T04:53:13.074Z", "detail": "this is my task #11", "dueDateTime": "2023-04-29T17:34:00.000Z", "importance": "Low", "optionalInd": "false", "pictureUrl": "sample url", "taskReminderId": expect.any(String), "title": "task #11111", "updatedBy": null, "updatedDate": null}
+                ])
             })
         })
         describe('given that the id does not exist', () => {
@@ -70,7 +68,7 @@ describe('overview', () => {
                 const id = "10209999";
                 const { body, statusCode } = await supertest(app).get(`/overview/getTasksById/${id}`)
                 expect(statusCode).toBe(200)
-                expect(body).toEqual({"tasks": [[]]})
+                expect(body).toEqual([])
             })
         })
     })
@@ -91,7 +89,8 @@ describe('overview', () => {
                     createdBy:"21315092",
                     updatedDate: null,
                     updatedBy: null,
-                    importance:"Low"
+                    importance:"Low",
+                    taskReminderId: expect.any(String)
                 });
             })
         })
@@ -120,11 +119,10 @@ describe('overview', () => {
                 const { body, statusCode } = await supertest(app).get(`/overview/getTeamMemberInfoById/${id}`)
                 expect(statusCode).toBe(200)
                 expect(body).toEqual(
-                {"teamMember": [
-                    [
+                [
                         {"cop": 5, "firstName": "Christopher", "immediateSupervisor": 10010586, "lastName": "Galapin", "middleName": "Gime", "slt": 10029360, "starsEarned": 999, "workEmail": "christopher.galapin@telusinternational.com", "workdayId": 10204981}
-                    ]
-                ]})
+                ]
+                )
             })
         })
         describe('given that id does not exist', () => {

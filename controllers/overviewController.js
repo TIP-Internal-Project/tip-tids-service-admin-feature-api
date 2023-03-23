@@ -8,13 +8,12 @@ const getUpcomingEventsCount = async (req, res) => {
 const getPendingTasksCountById = async (req, res) => {
   const tasksCount = await OverviewService.getPendingTasksCountById(req.params.id);
   console.log(tasksCount)
-  return res.send({ tasksCount: [tasksCount] })
+  return res.status(200).json(tasksCount)
 };
 
 const getTasksById = async (req, res) => {
   const tasks = await OverviewService.getTasksById(req.params.id);
-  console.log(tasks)
-  return res.send({ tasks: [tasks] })
+  return res.send(tasks)
 };
 
 const addTask = async (req, res) => {
@@ -41,7 +40,7 @@ const getEvents = async (req, res) => {
 const getTeamMemberInfoById = async (req, res) => {
   const teamMember = await OverviewService.getTeamMemberInfoById(req.params.id);
   if(teamMember.length > 0) {
-    return res.send({ teamMember: [teamMember] })
+    return res.send(teamMember)
   }
   res.status(404).json({ message: 'Id not found' });
 };

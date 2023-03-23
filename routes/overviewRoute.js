@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const overviewController = require('../controllers/overviewController');
 
+router.get('/', function(req, res, next) {res.render('overview', { title: 'Overview API' });});
+
 router.get('/getUpcomingEventsCount', overviewController.getUpcomingEventsCount);
 
 router.get('/getPendingTasksCountById/:id', overviewController.getPendingTasksCountById);

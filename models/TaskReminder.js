@@ -45,6 +45,7 @@ try {
     // to remove the default properties of the JSON that is not needed after POST and set the default id to eventId
     taskReminderSchema.set('toJSON', {
         transform: (doc, ret, options) => {
+            ret.taskReminderId = ret._id;
             delete ret._id;
             delete ret.__v;
             return ret;
