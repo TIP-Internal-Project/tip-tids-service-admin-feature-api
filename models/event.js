@@ -23,7 +23,13 @@ try {
     createdDate: Date, // timestamp
     createdBy:String,
     updatedDate: Date, // timestamp
-    updatedBy: String
+    updatedBy: String,
+
+    
+    //++++++++ additional attributes not included on the data model
+    important: String, // to check if the event is important
+
+
   });
 
   Event = mongoose.model('events', eventSchema);
