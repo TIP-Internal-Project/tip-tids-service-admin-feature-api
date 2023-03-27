@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 require('./database');
 const port = 3000;
 
@@ -14,6 +15,7 @@ const eventRoutes = require('./routes/eventRoutes');
 
 const indexRouter = require('./routes');
 const featuresRouter = require('./routes/features');
+const overviewRouter = require('./routes/overviewRoute');
 
 const app = express();
 
@@ -21,6 +23,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/features', featuresRouter);
+app.use('/overview', overviewRouter);
 
 //edit app.use
 app.use('/events', eventRoutes);
