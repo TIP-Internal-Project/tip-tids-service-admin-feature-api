@@ -11,25 +11,25 @@ exports.createTeamMember = async (req, res) => {
   res.status(200).send(teamMembers);
 }
 
-exports.getTeamMemberById = async (req, res) => {
-  const teamMember = await teamMembersService.getTeamMemberById(req.params.id);
-  if (teamMember.length === 0) {
+exports.getTeamMemberProfileById = async (req, res) => {
+  const teamMemberProfile = await teamMembersService.getTeamMemberProfileById(req.params.id);
+  if (teamMemberProfile.length === 0) {
     res.status(400).send({ error: "No team member found." })
   } else {
-    res.status(200).send(teamMember);
+    res.status(200).send(teamMemberProfile);
   }
 }
 
-exports.updateTeamMember = async (req, res) => {
-  const teamMember = await teamMembersService.updateTeamMember(req.params.id, req.body);
-  if (teamMember === null) {
+exports.updateTeamMemberProfile = async (req, res) => {
+  const teamMemberProfile = await teamMembersService.updateTeamMemberProfile(req.params.id, req.body);
+  if (teamMemberProfile === null) {
     res.status(400).send({ error: "No team member found." })
   } else {
-    const { error } = schema.updateTeamMember.validate(req.body);
+    const { error } = schema.updateTeamMemberProfile.validate(req.body);
     if (!!error) {
       return res.status(400).send({ error: "Insufficient data provided." })
     } else {
-      res.status(200).send(teamMember);
+      res.status(200).send(teamMemberProfile);
     }
   }
 }

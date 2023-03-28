@@ -1,24 +1,24 @@
-const TeamMember = require('../models/TeamMember');
+const TeamMemberProfile = require('../models/TeamMemberProfile');
 
 class TeamMemberService {
   async getAllTeamMembers() {
-    const teamMembers = await TeamMember.find();
+    const teamMembers = await TeamMemberProfile.find();
     return teamMembers;
   }
 
-  async getTeamMemberById(employeeId) {
-    const teamMember = await TeamMember.find({ employeeId: employeeId });
-    return teamMember;
+  async getTeamMemberProfileById(employeeId) {
+    const teamMemberProfile = await TeamMemberProfile.find({ employeeId: employeeId });
+    return teamMemberProfile;
   }
 
-  async updateTeamMember(employeeId, updatedDetails) {
-    const teamMember = await TeamMember.findOneAndUpdate({ employeeId: employeeId }, updatedDetails, { new: true });
-    return teamMember;
+  async updateTeamMemberProfile(employeeId, updatedDetails) {
+    const teamMemberProfile = await TeamMemberProfile.findOneAndUpdate({ employeeId: employeeId }, updatedDetails, { new: true });
+    return teamMemberProfile;
   }
 
   async createTeamMember(details) {
-    const teamMember = await TeamMember.create(details);
-    return teamMember;
+    const teamMemberProfile = await TeamMemberProfile.create(details);
+    return teamMemberProfile;
   }
 }
 

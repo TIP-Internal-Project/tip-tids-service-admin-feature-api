@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const teamMembersController = require('../controller/team-members');
+const teamMembersController = require('../controllers/team-members');
 
 router.get('/', teamMembersController.getAllTeamMembers);
 
-router.get('/:id', teamMembersController.getTeamMemberById);
+router.get('/:id', teamMembersController.getTeamMemberProfileById);
 
-router.patch('/:id', teamMembersController.updateTeamMember);
+router.patch('/:id', teamMembersController.updateTeamMemberProfile);
 
 router.post('/', teamMembersController.createTeamMember);
 

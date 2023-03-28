@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-let TeamMembers;
+let TeamMembersProfile;
 try {
-  TeamMembers = mongoose.model('teammembers');
+  TeamMembersProfile = mongoose.model('teammembers');
 } catch (error) {
-  const teamMemberSchema = new Schema({
+  const teamMemberProfileSchema = new Schema({
     employeeId: String,
     lastName: String,
     firstName: String,
@@ -20,7 +20,7 @@ try {
     OMId: String,
   });
 
-  TeamMembers = mongoose.model('teammembers', teamMemberSchema);
+  TeamMembersProfile = mongoose.model('teammembers', teamMemberProfileSchema);
 }
 
-module.exports = TeamMembers;
+module.exports = TeamMembersProfile;

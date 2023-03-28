@@ -1,6 +1,6 @@
 var Joi = require('joi')
 
-exports.updateTeamMember = Joi.object({
+exports.updateTeamMemberProfile = Joi.object({
   lastName: Joi.string().required(),
   firstName: Joi.string().required(),
   jobProfile: Joi.string().required(),
