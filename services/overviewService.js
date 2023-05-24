@@ -29,11 +29,11 @@ class OverviewService{
         return events;
     }
 
-    //for testing only
-    // async addEvent(eventBody) {
-    //     const event = await Event.create(eventBody);
-    //     return event;
-    // }
+    // for testing only
+    async addEvent(eventBody) {
+        const event = await Event.create(eventBody);
+        return event;
+    }
 
     async getTeamMemberInfoById(id) {
         const teamMember = await TeamMember.where('workdayId', id);
