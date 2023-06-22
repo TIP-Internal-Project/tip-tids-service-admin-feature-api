@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 require('./models/Event');
 require('./models/Feature');
 require('./models/TaskReminder');
-require('./models/TeamMember')
+require('./models/TeamMember');
+require('./models/Registration');
 
 mongoose.connect(config.databaseUri, {
     useNewUrlParser: true,
