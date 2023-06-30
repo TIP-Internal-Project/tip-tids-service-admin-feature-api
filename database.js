@@ -5,6 +5,7 @@ require('./models/Feature');
 require('./models/TaskReminder');
 require('./models/TeamMember');
 require('./models/Registration');
+require('./models/Order')
 
 mongoose.connect(config.databaseUri, {
     useNewUrlParser: true,
