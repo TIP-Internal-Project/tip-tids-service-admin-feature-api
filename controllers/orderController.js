@@ -10,4 +10,10 @@ const addOrder = async (req, res) => {
 	res.status(200).json(order);
 };
 
-module.exports = {getAllOrders, addOrder}
+const updateOrderById = async (req, res) => {
+	console.log(req.params.orderId)
+	const order = await OrderService.updateOrderById(req.params.orderId, req.body);
+  	res.status(200).json(order)
+}
+
+module.exports = {getAllOrders, addOrder, updateOrderById}
