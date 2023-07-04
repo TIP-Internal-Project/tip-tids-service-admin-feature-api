@@ -34,3 +34,6 @@ mongoose.connection.on( "close", () => {
 mongoose.connection.on( "error", error => {
   console.log( "MONGOOSE: connection error", error )  
 });
+mongoose.connection.on( "error", error => {
+  console.log( "MONGOOSE: connection error", error )  
+});
