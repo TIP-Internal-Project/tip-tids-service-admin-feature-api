@@ -9,4 +9,3 @@ router.post('/addOrder', orderController.addOrder);
 router.patch('/updateOrder/:id', orderController.updateOrder);
 
 module.exports = router;
-module.exports = router;
