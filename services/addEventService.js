@@ -13,13 +13,17 @@ Event.schema.set('toJSON', {
 });
 
 class AddEventService {
-  async createEvent(eventData) {
-    const event = new Event(eventData);
-    event.createdDate = new Date(); // Set the createdDate property to the current date
-    
-    await event.save();
-    return event;
+    async createEvent(eventData) {
+      const event = new Event(eventData);
+      event.createdDate = new Date(); // Set the createdDate property to the current date
+  
+      // Generate the next eventId
+      const count = await Event.countDocuments();
+      event.eventId = (count + 1).toString().padStart(6, '0'); // Generate a six-digit eventId with leading zeros
+  
+      await event.save();
+      return event;
+    }
   }
-}
-
-module.exports = new AddEventService();
+  
+  module.exports = new AddEventService();
