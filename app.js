@@ -12,6 +12,7 @@ const overviewRouter = require('./routes/overviewRoute');
 const eventsRouter = require('./routes/eventsRoute');
 const orderRouter = require('./routes/orderRoute');
 const taskRouter = require('./routes/taskRoute');
+const AddEventRouter = require('./routes/AddEventRoute');
 
 const app = express();
 
@@ -32,6 +33,11 @@ app.use('/overview', overviewRouter);
 app.use('/events', eventsRouter);
 app.use('/order', orderRouter);
 app.use('/task', taskRouter)
+
+app.use('/events', AddEventRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
