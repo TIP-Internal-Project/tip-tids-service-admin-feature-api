@@ -13,17 +13,11 @@ try {
         title: {
             type: String
         },
-        detail: {
-            type: String
-        },
-        venue: {
+        eventDetails: {
             type: String
         },
         venueDetails: {
             type: String
-        },
-        starsNum: {
-            type: Number
         },
         pictureUrl: {
             type: String
@@ -34,13 +28,28 @@ try {
         endDate: {
             type: Date
         },
-        startTime: {
-            type: Date
-        },
-        endTime: {
-            type: Date
-        },
         code: {
+            type: String
+        },
+        category: {
+            type: String
+        },
+        importance: {
+            type: String
+        },
+        gmeetLink: {
+            type: String
+        },
+        postEventSurveyURL: {
+            type: String
+        },
+        starsNum: {
+            type: Number
+        },
+        regLink: {
+            type: String
+        },
+        qrLink: {
             type: String
         },
         createdAt: {
@@ -50,15 +59,9 @@ try {
             type: String
         },
         updatedAt: {
-            type: Date
-        },    
-        updatedBy: {
-            type: String
+            type: Date, default: Date.now
         },
-        category: {
-            type: String
-        },    
-        postEventSurveyURL: {
+        updatedBy: {
             type: String
         }
     });

@@ -3,24 +3,24 @@ const Registration = require('../models/Registration');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
 
-class EventsService{
+class EventsService {
 
 	async getAllEvents() {
-        const events = await Event.find();
-        return events;
-    }
+		const events = await Event.find();
+		return events;
+	}
 
 	async register(registrationBody) {
-        const registration = await Registration.create(registrationBody);
+		const registration = await Registration.create(registrationBody);
 		return registration;
-    }
+	}
 
 	async getRegisteredEvents(email) {
 		const registeredEventIds = await getRegisteredEventIds(email);
 		const registeredEvents = await Event.find({
 			eventId: { $in: registeredEventIds }
 		});
-	    return registeredEvents;
+		return registeredEvents;
 	}
 
 	async getUnregisteredEvents(email) {
@@ -29,9 +29,13 @@ class EventsService{
 		const unregisteredEvents = await Event.find({
 			eventId: { $nin: registeredEventIds }
 		});
-	    return unregisteredEvents;
+		return unregisteredEvents;
 	}
 
+	async updateEvent(eventId, updatedDetails) {
+		const event = await Event.findOneAndUpdate({ eventId: eventId }, updatedDetails, { new: true });
+		return event;
+	}
 }
 
 async function getRegisteredEventIds(email) {

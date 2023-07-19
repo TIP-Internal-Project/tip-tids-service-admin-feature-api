@@ -20,4 +20,13 @@ const getUnregisteredEvents = async (req, res) => {
 	res.status(200).json(events);
 };
 
-module.exports = {getAllEvents, register, getUnregisteredEvents, getRegisteredEvents}
+const updateEvent = async (req, res) => {
+	const event = await EventsService.updateEvent(req.params.eventId, req.body);
+	if (event === null) {
+		res.status(400).send({ error: "No event found." })
+	} else {
+		res.status(200).send(event);
+	}
+}
+
+module.exports = { getAllEvents, register, getUnregisteredEvents, getRegisteredEvents, updateEvent }
