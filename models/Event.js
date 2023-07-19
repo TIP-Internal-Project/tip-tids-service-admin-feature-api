@@ -8,7 +8,7 @@ try {
     const { Schema } = mongoose;
     const eventSchema = new Schema({
         eventId: {
-            type: Number
+            type: String
         },
         title: {
             type: String
