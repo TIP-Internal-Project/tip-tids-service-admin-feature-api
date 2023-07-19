@@ -10,4 +10,6 @@ router.get('/getUnregisteredEvents/:email', eventsController.getUnregisteredEven
 
 router.get('/getRegisteredEvents/:email', eventsController.getRegisteredEvents);
 
+router.patch('/updateEvent/:eventId', eventsController.updateEvent)
+
 module.exports = router;
