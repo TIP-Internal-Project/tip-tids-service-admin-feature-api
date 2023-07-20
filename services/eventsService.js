@@ -18,7 +18,7 @@ class EventsService {
 	async getRegisteredEvents(email) {
 		const registeredEventIds = await getRegisteredEventIds(email);
 		const registeredEvents = await Event.find({
-			_id: { $in: registeredEventIds }
+			eventId: { $in: registeredEventIds }
 		});
 		return registeredEvents;
 	}
@@ -27,13 +27,13 @@ class EventsService {
 		// Get the IDs of events registered by the email
 		const registeredEventIds = await getRegisteredEventIds(email);
 		const unregisteredEvents = await Event.find({
-			_id: { $nin: registeredEventIds }
+			eventId: { $nin: registeredEventIds }
 		});
 		return unregisteredEvents;
 	}
 
 	async updateEvent(eventId, updatedDetails) {
-		const event = await Event.findOneAndUpdate({ _id: eventId }, updatedDetails, { new: true });
+		const event = await Event.findOneAndUpdate({ eventId: eventId }, updatedDetails, { new: true });
 		return event;
 	}
 }
