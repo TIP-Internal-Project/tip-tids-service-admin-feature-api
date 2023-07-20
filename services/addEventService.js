@@ -4,7 +4,7 @@ const Registration = require('../models/Registration');
 // Set the schema options for the Event model
 Event.schema.set('toJSON', {
   transform: (doc, ret, options) => {
-    ret.eventId = ret._id;
+    
     delete ret._id;
     delete ret.__v;
     delete ret.registered; // Remove the 'registered' property from the returned JSON
