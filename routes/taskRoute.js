@@ -6,4 +6,6 @@ router.post('/addTask', taskController.addTask);
 
 router.get('/getAllTasks', taskController.getAllTasks)
 
+router.post('/completeTask/:taskId/:email', taskController.completeTask);
+
 module.exports = router;
