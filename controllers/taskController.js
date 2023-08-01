@@ -16,4 +16,9 @@ const completeTask = async (req, res) => {
     res.status(200).json(completedTask);
 };
 
-module.exports = { addTask, getAllTasks, completeTask }
+const udpateTaskById = async (req, res) => {
+    const task = await TaskService.updateTaskById(req.params.taskId, req.body);
+    res.status(200).json(task);
+};
+
+module.exports = { addTask, getAllTasks, completeTask, udpateTaskById }
