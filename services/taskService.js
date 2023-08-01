@@ -24,6 +24,11 @@ class TaskService {
         return completedTask
     }
 
+	async updateTaskById(taskId, taskBody) {
+		const task = await Task.findOneAndUpdate({ taskId: taskId }, taskBody, { new: true, useFindAndModify: false });
+		return task;
+	}
+
 }
 
 module.exports = new TaskService();
