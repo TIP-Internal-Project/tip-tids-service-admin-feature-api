@@ -63,7 +63,11 @@ try {
         },
         updatedBy: {
             type: String
-        }
+        },
+        qrCodeUrl: {
+            type: String,
+          },
+        
     });
 
     // to remove the default properties of the JSON that is not needed after POST and set the default id to eventId
