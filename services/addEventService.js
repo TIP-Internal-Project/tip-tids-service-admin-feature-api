@@ -19,7 +19,13 @@ class AddEventService {
 
     // Generate the next eventId
     const count = await Event.find().sort({ "eventId": 1 });
-    event.eventId = count[count.length - 1].eventId + 1;
+    if (count.length == 0){
+      event.eventId = 1
+    }
+    else{
+      event.eventId = count[count.length - 1].eventId + 1;
+    }
+    
 
     await event.save();
     return event;
