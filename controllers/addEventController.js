@@ -2,7 +2,10 @@ const AddEventService = require('../services/addEventService');
 
 exports.createEvent = async (req, res) => {
   try {
-    const event = await AddEventService.createEvent(req.body);
+
+    const eventDataWithQRCode = { ...req.body, qrCodeUrl: req.body.qrCodeUrl }
+    
+    const event = await AddEventService.createEvent(eventDataWithQRCode)
     res.status(200).json(event);
   } catch (error) {
     console.log(error.message);
