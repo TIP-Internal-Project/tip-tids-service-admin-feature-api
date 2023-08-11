@@ -66,7 +66,11 @@ try {
         },
         qrCodeUrl: {
             type: String,
-          },
+        },
+		status: {
+			type: String,
+			default: 'Active'
+		},
         
     });
 
