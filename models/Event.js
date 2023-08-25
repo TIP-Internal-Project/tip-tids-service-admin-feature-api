@@ -34,6 +34,9 @@ try {
         category: {
             type: String
         },
+        eventType:{
+            type: String
+        },
         importance: {
             type: String
         },
