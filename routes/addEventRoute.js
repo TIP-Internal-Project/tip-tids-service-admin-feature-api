@@ -1,13 +1,17 @@
 const express = require('express');
-const cors = require('cors');
+const multer = require('multer');
+
 const router = express.Router();
-const AddEventController = require('../controllers/addEventController');
+const addEventController = require('../controllers/addEventController');
 
-// Enable CORS for all routes
-router.use(cors());
+const multerMiddleware = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // No larger than 5mb, change as needed
+  },
+});
 
-router.post('/', AddEventController.createEvent);
-
-
+// Define route
+router.post('/', multerMiddleware.single('imgfile'), addEventController.createEvent);
 
 module.exports = router;
