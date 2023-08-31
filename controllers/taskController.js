@@ -21,4 +21,14 @@ const udpateTaskById = async (req, res) => {
     res.status(200).json(task);
 };
 
-module.exports = { addTask, getAllTasks, completeTask, udpateTaskById }
+const getCompletedTasks = async (req, res) => {
+	const tasks = await TaskService.getCompletedTasks(req.params.email);
+	res.status(200).json(tasks);
+};
+
+const getIncompleteTasks = async (req, res) => {
+	const tasks = await TaskService.getIncompleteTasks(req.params.email);
+	res.status(200).json(tasks);
+};
+
+module.exports = { addTask, getAllTasks, completeTask, udpateTaskById, getCompletedTasks, getIncompleteTasks }

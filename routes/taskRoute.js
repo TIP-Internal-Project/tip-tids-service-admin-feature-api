@@ -10,4 +10,8 @@ router.post('/completeTask/:taskId/:email', taskController.completeTask);
 
 router.put('/updateTaskById/:taskId', taskController.udpateTaskById);
 
+router.get('/getCompletedTasks/:email', taskController.getCompletedTasks);
+
+router.get('/getIncompleteTasks/:email', taskController.getIncompleteTasks);
+
 module.exports = router;
