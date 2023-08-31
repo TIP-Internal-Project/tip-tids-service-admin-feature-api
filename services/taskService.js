@@ -29,6 +29,26 @@ class TaskService {
 		return task;
 	}
 
+    async getCompletedTasks(email) {
+		const completedTaskIds = await getCompletedTaskIds(email);
+		const completedTasks = await Task.find({
+			taskId: { $in: completedTaskIds }
+		});
+		return completedTasks;
+	}
+
+	async getIncompleteTasks(email) {
+		const completedTaskIds = await getCompletedTaskIds(email);
+		const incompleteTasks = await Task.find({
+			taskId: { $nin: completedTaskIds }
+		});
+		return incompleteTasks;
+	}
+}
+
+async function getCompletedTaskIds(email) {
+	const completedTasks = await CompletedTask.find({ email });
+	return completedTasks.map(completedTask => completedTask.taskId);
 }
 
 module.exports = new TaskService();

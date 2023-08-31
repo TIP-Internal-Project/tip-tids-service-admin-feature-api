@@ -22,10 +22,7 @@ try {
 		details: {
             type: String
         },
-		workdayLink: {
-			type: String
-		},
-		myGrowthLink: {
+		link: {
 			type: String
 		},
 		importance: {
