@@ -12,4 +12,6 @@ router.get('/getRegisteredEvents/:email', eventsController.getRegisteredEvents);
 
 router.patch('/updateEvent/:eventId', eventsController.updateEvent)
 
+router.put('/deleteEvent/:eventId', eventsController.deleteEvent)
+
 module.exports = router;

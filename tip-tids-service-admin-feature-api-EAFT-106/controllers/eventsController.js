@@ -29,4 +29,9 @@ const updateEvent = async (req, res) => {
 	}
 }
 
-module.exports = { getAllEvents, register, getUnregisteredEvents, getRegisteredEvents, updateEvent }
+const deleteEvent = async (req, res) => {
+	const event = await EventsService.deleteEvent(req.params.eventId, req.body);
+  	res.status(200).json(event)
+}
+
+module.exports = { getAllEvents, register, getUnregisteredEvents, getRegisteredEvents, updateEvent, deleteEvent }

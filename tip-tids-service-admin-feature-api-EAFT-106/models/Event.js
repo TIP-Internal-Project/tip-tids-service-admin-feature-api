@@ -70,6 +70,15 @@ try {
           imageUrl: { 
             type: String
         },
+        authenticatedUrl: { 
+            type: String
+        },
+        status: {
+			type: String,
+			default: 'Active'
+		},
+        
+    
         
     });
 

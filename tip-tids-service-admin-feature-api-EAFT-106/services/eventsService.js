@@ -36,6 +36,13 @@ class EventsService {
 		const event = await Event.findOneAndUpdate({ eventId: eventId }, updatedDetails, { new: true });
 		return event;
 	}
+
+	async deleteEvent(eventId, eventBody) {
+		const event = await Event.findOneAndUpdate({ eventId: eventId }, eventBody, { new: true, useFindAndModify: false });
+		return event;
+	}
+
+
 }
 
 async function getRegisteredEventIds(email) {
