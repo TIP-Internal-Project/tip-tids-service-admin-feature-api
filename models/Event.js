@@ -69,11 +69,19 @@ try {
         },
         qrCodeUrl: {
             type: String,
+          },
+          imageUrl: { 
+            type: String
         },
-		status: {
+        authenticatedUrl: { 
+            type: String
+        },
+        status: {
 			type: String,
 			default: 'Active'
 		},
+        
+    
         
     });
 

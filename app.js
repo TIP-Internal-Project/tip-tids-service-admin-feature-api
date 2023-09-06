@@ -14,6 +14,8 @@ const orderRouter = require('./routes/orderRoute');
 const taskRouter = require('./routes/taskRoute');
 const AddEventRouter = require('./routes/AddEventRoute');
 
+
+
 const app = express();
 
 // view engine setup
@@ -34,7 +36,9 @@ app.use('/events', eventsRouter);
 app.use('/order', orderRouter);
 app.use('/task', taskRouter)
 
-app.use('/events', AddEventRouter);
+
+app.use('/createEvent', AddEventRouter);
+
 
 
 
