@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const eventsController = require('../controllers/eventsController');
+const multer = require('multer')
+const multerMiddleware = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+      fileSize: 5 * 1024 * 1024, 
+    },
+  })
+  
 
 router.get('/getAllEvents', eventsController.getAllEvents);
 
@@ -10,7 +18,7 @@ router.get('/getUnregisteredEvents/:email', eventsController.getUnregisteredEven
 
 router.get('/getRegisteredEvents/:email', eventsController.getRegisteredEvents);
 
-router.patch('/updateEvent/:eventId', eventsController.updateEvent)
+router.patch('/updateEvent/:eventId', multerMiddleware.single('imageFile'), eventsController.updateEvent);
 
 router.put('/deleteEvent/:eventId', eventsController.deleteEvent)
 
