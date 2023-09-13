@@ -2,6 +2,16 @@ const Event = require('../models/Event');
 const Registration = require('../models/Registration');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
+const { Storage } = require('@google-cloud/storage');
+
+const storage = new Storage({
+	projectId: 'engagement-app-288317', 
+	keyFilename: './engagementAppKey.json', 
+  });
+  
+  const bucket = storage.bucket('engagement-app-image-storage'); 
+  
+
 
 class EventsService {
 
