@@ -80,7 +80,9 @@ try {
 			type: String,
 			default: 'Active'
 		},
-        
+        eventType: { 
+            type: String
+        }
     
         
     });

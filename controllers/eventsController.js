@@ -21,13 +21,25 @@ const getUnregisteredEvents = async (req, res) => {
 };
 
 const updateEvent = async (req, res) => {
-	const event = await EventsService.updateEvent(req.params.eventId, req.body);
-	if (event === null) {
-		res.status(400).send({ error: "No event found." })
-	} else {
-		res.status(200).send(event);
+	const { eventId } = req.params;
+	const updatedDetails = req.body;
+	const imageFile = req.file; 
+	if (imageFile) {
+	  
+	  const imageBuffer = imageFile.buffer;
+	  const fileName = `${Date.now()}-${imageFile.originalname}`;
+	  const imageUrl = await EventsService.uploadImage(imageBuffer, fileName);
+	  updatedDetails.imageUrl = imageUrl;
 	}
-}
+  
+	const event = await EventsService.updateEvent(eventId, updatedDetails);
+  
+	if (event === null) {
+	  res.status(400).send({ error: "No event found." });
+	} else {
+	  res.status(200).send(event);
+	}
+  };
 
 const deleteEvent = async (req, res) => {
 	const event = await EventsService.deleteEvent(req.params.eventId, req.body);
