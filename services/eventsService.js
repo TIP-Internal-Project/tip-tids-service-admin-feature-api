@@ -50,7 +50,7 @@ class EventsService {
 			throw new Error('Event not found');
 		  }
 		  const { title } = updatedDetails;
-		   let imageUrl = event.imageUrl; 
+		   let imageUrl = event.imageUrl;
 		  const now = new Date();
 			const datePart = now.toISOString().split('T')[0]; // Get the date part
 			const timePart = now.toTimeString().split(' ')[0].replace(/:/g, '-');

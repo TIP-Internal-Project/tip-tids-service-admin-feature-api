@@ -28,9 +28,16 @@ class AddEventService {
   
       // Upload image if provided
       let imageUrl = '';
+
+      const now = new Date();
+			const datePart = now.toISOString().split('T')[0]; // Get the date part
+			const timePart = now.toTimeString().split(' ')[0].replace(/:/g, '-');
+
+
+
       if (imageFile) {
         console.log('Calling uploadImage function...');
-        const fileName = `images/${title}-${imageFile.originalname}`;
+        const fileName = `images/${title}-${datePart}-${timePart}-${imageFile.originalname}`;
         imageUrl = await this.uploadImage(imageFile.buffer, fileName);
         console.log('Image URL:', imageUrl);
       }
