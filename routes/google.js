@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { google } = require("googleapis");
-require("dotenv").config();
+const creds = require("../creds.json");
 
 const oauth2Client = new google.auth.OAuth2(
-  (CLIENT_ID = process.env.CLIENT_ID),
-  (CLIENT_SECRET = process.env.CLIENT_SECRET),
-  (REDIRECT_URI = process.env.REDIRECT_URI)
+  (CLIENT_ID = creds.web.client_id),
+  (CLIENT_SECRET = creds.web.client_secret),
+  (REDIRECT_URI = creds.web.redirect_uri)
 );
 
 router.get("/auth", (req, res) => {
