@@ -78,7 +78,7 @@ try {
         },
         status: {
 			type: String,
-			default: 'Active'
+			default: 'Inactive'
 		},
         eventType: { 
             type: String
