@@ -1,18 +1,15 @@
-const AddEventService = require('../services/addEventService');
+const AddEventService = require("../services/addEventService");
 
 exports.createEvent = async (req, res) => {
   try {
     const eventData = req.body;
-    const imageFile = req.file; 
-    let imageUrl = ''; 
+    const imageFile = req.file;
+    let imageUrl = "";
 
-    
     if (imageFile) {
       const imageBuffer = imageFile.buffer;
-      const fileName = `${Date.now()}-${imageFile.originalname}`; 
-      imageUrl = await AddEventService.uploadImage(imageBuffer, fileName); 
-
-      
+      const fileName = `${Date.now()}-${imageFile.originalname}`;
+      imageUrl = await AddEventService.uploadImage(imageBuffer, fileName);
       eventData.imageUrl = imageUrl;
     }
 
