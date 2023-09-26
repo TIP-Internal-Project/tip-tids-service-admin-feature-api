@@ -62,7 +62,7 @@ try {
             type: String
         },
         updatedAt: {
-            type: Date, default: Date.now
+            type: Date,
         },
         updatedBy: {
             type: String
