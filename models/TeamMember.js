@@ -3,38 +3,53 @@ const mongoose = require('mongoose');
 let TeamMember;
 
 try {
-    TeamMember = mongoose.model('team_member');
+    TeamMember = mongoose.model('TeamMember', teamMemberSchema, 'TeamMembers');
 } catch (error) {
     const { Schema } = mongoose;
     const teamMemberSchema = new Schema({
         workdayId: {
             type: Number
         },
-        lastName: {
+        employeeName: {
             type: String
         },
-        firstName: {
+        practice: {
             type: String
-        },
-        middleName: {
-            type: String
-        },
-        immediateSupervisor: {
-            type: Number
-        },
-        slt: {
-            type: Number
         },
         functionalArea: {
             type: String
         },
-        workEmail: {
-            type: String
-        },
-        starsEarned: {
+        totalStars: {
             type: Number
         },
-        cop: {
+        starPoints: {
+            type: Number
+        },
+        starsPesoConversion: {
+            type: String
+        },
+        stars2022: {
+            type: Number
+        },
+        stars2023: {
+            type: Number
+        },
+        starPointsDeducted: {
+            type: Number
+        },
+        copPoints: {
+            type: Number
+        },
+        copPesoConversion: {
+            type: Number
+        },
+        cop2022Points: {
+            type: Number
+        },
+        cop2023Points: {
+            type: Number
+        },
+        copPointsDeducted: {
             type: Number
         }
     });
@@ -48,7 +63,7 @@ try {
         }
     });
 
-    TeamMember = mongoose.model('team_member', teamMemberSchema);
+    TeamMember = mongoose.model('TeamMember', teamMemberSchema, 'TeamMembers');
 }
 
 module.exports = TeamMember;
