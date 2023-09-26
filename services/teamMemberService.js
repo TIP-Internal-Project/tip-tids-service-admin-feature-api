@@ -3,8 +3,8 @@ const TeamMember = require('../models/TeamMember')
 class TeamMemberService {
 
     async getTeamMemberInfoByName(employeeName) {
-        const teamMember = await TeamMember.find({ employeeName });
-        console.log('Team Member:', teamMember);
+        const regexPattern = new RegExp(`^${employeeName}`, 'i');
+        const teamMember = await TeamMember.find({ employeeName: regexPattern });
         return teamMember;
     }
 }
