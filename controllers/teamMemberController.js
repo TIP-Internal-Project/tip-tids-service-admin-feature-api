@@ -8,9 +8,9 @@ const getTeamMemberInfoByName = async (req, res) => {
   res.status(404).json({ message: 'not found' });
 };
 
-const getCount = async (req, res) => {
-    const teamMemberCount = await TeamMemberService.getCount();
-    res.status(200).json(teamMemberCount);
+const addStarPoints = async (req, res) => {
+    const teamMember = await TeamMemberService.addStarPoints(req.body.employeeName, req.body.pointsToAdd);
+    res.status(200).json(teamMember);
 };
 
-module.exports = {getTeamMemberInfoByName, getCount};
+module.exports = {getTeamMemberInfoByName, addStarPoints};
