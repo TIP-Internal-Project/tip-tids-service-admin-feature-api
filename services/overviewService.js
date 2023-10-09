@@ -5,7 +5,7 @@ const TeamMember = require('../models/TeamMember')
 class OverviewService {
 
     async getUpcomingEventsCount() {
-        const eventsCount = await Event.countDocuments();
+        const eventsCount = await Event.find({ status: {$in: ['Active', 'Inactive']}}).count();
         return eventsCount;
     }
 
