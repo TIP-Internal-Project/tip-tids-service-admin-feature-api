@@ -25,7 +25,7 @@ class OverviewService {
     }
 
     async getEvents() {
-        const events = await Event.find({ status: 'Active' }).sort({ startDate: 1 }).limit(5);
+        const events = await Event.find({ status: {$in: ['Active', 'Inactive']}}).sort({ startDate: 1 }).limit(5);
         return events;
     }
 
