@@ -12,7 +12,7 @@ const overviewRouter = require("./routes/overviewRoute");
 const eventsRouter = require("./routes/eventsRoute");
 const orderRouter = require("./routes/orderRoute");
 const taskRouter = require("./routes/taskRoute");
-const AddEventRouter = require("./routes/AddEventRoute");
+const AddEventRoute = require("./routes/addEventRoute");
 const googleRouter = require("./routes/google");
 
 const app = express();
@@ -35,7 +35,7 @@ app.use("/events", eventsRouter);
 app.use("/order", orderRouter);
 app.use("/task", taskRouter);
 
-app.use("/createEvent", AddEventRouter);
+app.use("/createEvent", AddEventRoute);
 
 app.use("/google", googleRouter);
 
