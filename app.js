@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 require("./database");
+const moment = require('moment-timezone');
 
 const indexRouter = require("./routes");
 const featuresRouter = require("./routes/features");
@@ -14,6 +15,7 @@ const orderRouter = require("./routes/orderRoute");
 const taskRouter = require("./routes/taskRoute");
 const AddEventRoute = require("./routes/addEventRoute");
 const googleRouter = require("./routes/google");
+const teamMemberRouter = require("./routes/teamMemberRoute");
 
 const app = express();
 
@@ -34,6 +36,7 @@ app.use("/overview", overviewRouter);
 app.use("/events", eventsRouter);
 app.use("/order", orderRouter);
 app.use("/task", taskRouter);
+app.use("/teamMember", teamMemberRouter);
 
 app.use("/createEvent", AddEventRoute);
 
@@ -53,6 +56,26 @@ app.use(function (err, req, res) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+const schedule = require('node-schedule');
+const Event = require('./models/Event');
+
+schedule.scheduleJob('*/5 * * * *', async () => {
+  const now = new Date();
+  // const manilaTime = new Date().toLocaleString("en-GB", { timeZone: "Asia/Manila" });
+
+  const outdatedEvents = await Event.find({
+    endDate: { $lt: now },
+    status: { $nin: ['Completed', 'Archived'] },
+  });
+
+  for (const event of outdatedEvents) {
+    if(new Date(event.endDate.setHours(event.endDate.getHours() + 12)) <= now){
+      event.status = 'Completed';
+      await event.save();
+    }
+  }
 });
 
 module.exports = app;

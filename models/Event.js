@@ -87,6 +87,17 @@ try {
         
     });
 
+    eventSchema.pre('save', function (next) {
+        if (this.category === 'TIDS') {
+        this.starsNum = 50;
+        } else if (this.category === 'teamEvent') {
+        this.starsNum = 30;
+        } else if (this.category === 'COP') {
+        this.starsNum = 0;
+        }
+        next();
+    });
+
     // to remove the default properties of the JSON that is not needed after POST and set the default id to eventId
     eventSchema.set('toJSON', {
         transform: (doc, ret, options) => {
