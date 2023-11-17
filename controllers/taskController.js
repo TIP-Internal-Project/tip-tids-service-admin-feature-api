@@ -31,4 +31,9 @@ const getIncompleteTasks = async (req, res) => {
 	res.status(200).json(tasks);
 };
 
-module.exports = { addTask, getAllTasks, completeTask, udpateTaskById, getCompletedTasks, getIncompleteTasks }
+const deleteTask = async (req, res) => {
+	const task = await TaskService.deleteTask(req.params.taskId, req.body);
+  	res.status(200).json(task)
+};
+
+module.exports = { addTask, getAllTasks, completeTask, udpateTaskById, getCompletedTasks, getIncompleteTasks, deleteTask }

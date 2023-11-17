@@ -48,6 +48,10 @@ try {
         },
 		optionalInd: {
 			type: Boolean
+		},
+        status: {
+			type: String,
+            default: 'Active'
 		}
     });
 

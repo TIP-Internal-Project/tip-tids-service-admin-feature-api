@@ -44,6 +44,12 @@ class TaskService {
 		});
 		return incompleteTasks;
 	}
+
+	async deleteTask(taskId, taskBody) {
+		const task = await Task.findOneAndUpdate({ taskId: taskId }, taskBody, { new: true, useFindAndModify: false });
+		return task;
+	}
+
 }
 
 async function getCompletedTaskIds(email) {

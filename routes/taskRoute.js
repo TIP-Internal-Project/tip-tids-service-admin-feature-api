@@ -14,4 +14,6 @@ router.get('/getCompletedTasks/:email', taskController.getCompletedTasks);
 
 router.get('/getIncompleteTasks/:email', taskController.getIncompleteTasks);
 
+router.put('/deleteTask/:taskId', taskController.deleteTask);
+
 module.exports = router;
