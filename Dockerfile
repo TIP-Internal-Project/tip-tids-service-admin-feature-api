@@ -1,6 +1,6 @@
 FROM node:14-alpine
 
-EXPOSE 3000
+EXPOSE 3001
 
 WORKDIR /usr/src/app
 
@@ -10,6 +10,6 @@ RUN npm install && npm cache clean --force
 
 COPY . .
 
-CMD [ "node", "./bin/www", "npm" , "start" ]
+CMD [ "node", "./bin/www"]
 
 RUN apk add --update curl
