@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {res.render('overview', { title: 'Overv
 
 router.get('/getUpcomingEventsCount', overviewController.getUpcomingEventsCount);
 
-router.get('/getPendingTasksCountById/:id', overviewController.getPendingTasksCountById);
+router.get('/getPendingTasksCount/:email', overviewController.getPendingTasksCount);
 
 router.get('/getTasksById/:id', overviewController.getTasksById);
 
@@ -14,8 +14,7 @@ router.post('/addTask', overviewController.addTask);
 
 router.get('/getEvents', overviewController.getEvents);
 
-// for testing
-router.post('/addEvent', overviewController.addEvent);
+router.get('/getTasks', overviewController.getTasks);
 
 router.get('/getTeamMemberInfoById/:id', overviewController.getTeamMemberInfoById);
 
