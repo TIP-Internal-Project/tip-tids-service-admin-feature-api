@@ -12,15 +12,15 @@ class OverviewService {
     }
 
     async getPendingTasksCount(email) {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const totalTasksCount = await Task.countDocuments({ status: {$in: ['Active']}, dueDate: { $gte: today }});
+        const activeTasks = await Task.find({ status: 'Active' });
+        const activeTaskIds = activeTasks.map(task => task.taskId);
 
         const completedTasksCount = await CompletedTasks.countDocuments({
             email: email,
+            taskId: { $in: activeTaskIds },
         });
 
-        const pendingTasksCount = totalTasksCount - completedTasksCount;
+        const pendingTasksCount = activeTasks.length - completedTasksCount;
         return pendingTasksCount;
     }
 
@@ -39,11 +39,11 @@ class OverviewService {
         return events;
     }
 
-    async getTasks() {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        const tasks = await Task.find({ status: {$in: ['Active']}, dueDate: { $gte: today }}).sort({ dueDate: 1 }).limit(5);
+    async getTasks(email) {
+        const activeTasks = await Task.find({ status: 'Active' });
+        const completedTaskIds = await CompletedTasks.find({ email: email }).distinct('taskId');
+        const activeAndIncompleteTasks = activeTasks.filter(task => !completedTaskIds.includes(task.taskId));
+        const tasks = activeAndIncompleteTasks.sort((a, b) => a.dueDate - b.dueDate).slice(0, 5);
         return tasks;
     }
 
