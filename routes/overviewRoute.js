@@ -14,7 +14,7 @@ router.post('/addTask', overviewController.addTask);
 
 router.get('/getEvents', overviewController.getEvents);
 
-router.get('/getTasks', overviewController.getTasks);
+router.get('/getTasks/:email', overviewController.getTasks);
 
 router.get('/getTeamMemberInfoById/:id', overviewController.getTeamMemberInfoById);
 
