@@ -13,7 +13,7 @@ const overviewRouter = require("./routes/overviewRoute");
 const eventsRouter = require("./routes/eventsRoute");
 const orderRouter = require("./routes/orderRoute");
 const taskRouter = require("./routes/taskRoute");
-const AddEventRoute = require("./routes/addEventRoute");
+const addEventRouter = require("./routes/addEventRoute");
 const googleRouter = require("./routes/google");
 const teamMemberRouter = require("./routes/teamMemberRoute");
 
@@ -38,7 +38,7 @@ app.use("/order", orderRouter);
 app.use("/task", taskRouter);
 app.use("/teamMember", teamMemberRouter);
 
-app.use("/createEvent", AddEventRoute);
+app.use("/createEvent", addEventRouter);
 
 app.use("/google", googleRouter);
 
