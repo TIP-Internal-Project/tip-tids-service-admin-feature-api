@@ -1,4 +1,5 @@
 const TeamMember = require('../models/TeamMember')
+const Registration = require('../models/Registration');
 
 class TeamMemberService {
 
@@ -14,6 +15,19 @@ class TeamMemberService {
 
         const teamMember = await TeamMember.find({ employeeName: regexPattern });
         return teamMember;
+    }
+
+    async checkDuplicates(email, eventId){
+        try{
+            const checkDupes = await Registration.find({ email: email, eventId: eventId });
+            if (checkDupes.length === 0) {
+               return false
+            } else {
+               return true
+            }
+        }   catch (error) {
+                console.error('Error:', error);
+        }
     }
 
     async addStarPoints(employeeName, points) {
