@@ -13,4 +13,9 @@ const addStarPoints = async (req, res) => {
     res.status(200).json(teamMember);
 };
 
-module.exports = {getTeamMemberInfoByName, addStarPoints};
+const checkDuplicates = async (req, res) => {
+    const teamMember = await TeamMemberService.checkDuplicates(req.params.email, req.params.eventId);
+    res.status(200).json(teamMember);
+};
+
+module.exports = {getTeamMemberInfoByName, addStarPoints, checkDuplicates};
