@@ -4,11 +4,15 @@ const Registration = require('../models/Registration');
 class TeamMemberService {
 
     async getTeamMemberInfoByName(employeeName) {
-        const [firstName, lastName] = employeeName.split(' ');
+        const nameParts = employeeName.split(' ');
+
+        // Extract the first and last names
+        const firstName = nameParts[0];
+        const lastName = nameParts[nameParts.length - 1];
 
         // Escape any special characters in the first name and last name
-        const escapedFirstName = firstName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-        const escapedLastName = lastName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const escapedFirstName = firstName.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const escapedLastName = lastName.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
         // Construct the regular expression pattern
         const regexPattern = new RegExp(`^${escapedFirstName}.*${escapedLastName}$`, 'i');
@@ -32,7 +36,11 @@ class TeamMemberService {
 
     async addStarPoints(employeeName, points) {
         try {
-            const [firstName, lastName] = employeeName.split(' ');
+            const nameParts = employeeName.split(' ');
+
+            // Extract the first and last names
+            const firstName = nameParts[0];
+            const lastName = nameParts[nameParts.length - 1];
 
             // Escape any special characters in the first name and last name
             const escapedFirstName = firstName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -40,6 +48,7 @@ class TeamMemberService {
 
             // Construct the regular expression pattern
             const regexPattern = new RegExp(`^${escapedFirstName}.*${escapedLastName}$`, 'i');
+
             // Search for the document based on the employeeName
             const teamMembers = await TeamMember.find({ employeeName: regexPattern });
 
