@@ -114,7 +114,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10005443,Carla Darlene Paz,Hybrid Cloud - Migration Services,TELUS CSE - DCS&S UNIX Server Management,97.00,970.00,"1,940.00",89,8,0.00,150.00,300.00,150,0,0
 10005305,Carlen Audrei Mendoza,Digital Workplace - Technology and Application Support,TELUS CSE - DCS&S Prod CTL Order Management Support,72.00,720.00,"1,440.00",28,44,0.00,30.00,60.00,30,0,0
 10035919,Carlo Garcia,-,Global Operations - TI Digital Solutions,26.00,260.00,520.00,20,6,0.00,0.00,0.00,0,0,0
-10060484,John Carlo Santos,Application Support Services - John Maunes,TELUS Health - Service Delivery and Operations,45.00,450.00,900.00,36,9,0.00,30.00,60.00,30,0,0
+10060484,John Carlo Santos,General Administration Analyst - John Maunes,TELUS Health - Service Delivery and Operations,45.00,450.00,900.00,36,9,0.00,30.00,60.00,30,0,0
 10010537,Carlos Jhunie Jr. Pangilinan,Application Support Services - John Maunes,TELUS CSE - D&S Wireless Customer Care,87.00,870.00,"1,740.00",84,3,0.00,130.00,260.00,130,0,0
 10029842,Carlos Manuel Gloria,Digital Workplace - Technology and Application Support,TELUS CSE - DCS&S VDI Support,112.00,"1,120.00","2,240.00",59,53,0.00,50.00,100.00,50,0,0
 10010535,Carmina Elise Dionne Dalusong,Application Support Services - Manuel Go,TELUS CSE - D&S IVR & Contact Center Management,61.00,610.00,"1,220.00",41,20,0.00,0.00,0.00,0,0,0
@@ -190,7 +190,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10131708,Edgardo Roman Hernandez,-,TELUS CSE - DCS&S Single Point of Contact,14.00,140.00,280.00,14,0,0.00,0.00,0.00,0,0,0
 10010644,Edison Valenzuela,Hybrid Cloud - Enable TELUS,TELUS CSE - DCS&S UNIX Server Management,78.00,780.00,"1,560.00",61,17,0.00,0.00,0.00,0,0,0
 10010544,Edito Jr. Chua,Application Support Services - John Maunes,TELUS CSE - Casa Spring,67.00,670.00,"1,340.00",41,26,0.00,0.00,0.00,0,0,0
-10037254,Edjelyn Enriquez,Application Support Services - John Maunes,TELUS Health - Service Delivery and Operations,62.00,620.00,"1,240.00",39,23,0.00,0.00,0.00,0,0,0
+10037254,Edjelyn Enriquez,General Administration Analyst - John Maunes,TELUS Health - Service Delivery and Operations,62.00,620.00,"1,240.00",39,23,0.00,0.00,0.00,0,0,0
 10124534,Edsel Talento,Application Support Services - Manuel Go,TELUS CSE - D&S JAVA Shared Pool,49.00,490.00,980.00,38,11,0.00,50.00,100.00,50,0,0
 10036167,Eduardo Jr. Ceneta,Digital Workplace - Technology and Application Support,TELUS CSE - DCS&S Prod CTL Order Management Support,48.00,480.00,960.00,30,18,0.00,80.00,160.00,80,0,0
 10012105,Edward II Pacis,Hybrid Cloud - Migration Services,Global Operations,71.00,710.00,"1,420.00",66,5,0.00,100.00,200.00,100,0,0
@@ -536,7 +536,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10006329,Marie Grace Mappatao,Application Support Services - Manuel Go,TELUS CSE - D&S Portal Identity and Reporting,54.00,540.00,"1,080.00",48,6,0.00,0.00,0.00,0,0,0
 10144608,Marielle Moralidad,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,WestJet,21.00,210.00,420.00,21,0,0.00,0.00,0.00,0,0,0
 10010527,Marissa Casimiro,-,TELUS CSE - D&S Manual Tester,68.00,680.00,"1,360.00",48,20,0.00,30.00,60.00,30,0,0
-10125718,Marjorie Morales,Application Support Services - John Maunes,TELUS CSE - D&S Manual Tester,46.00,460.00,920.00,32,14,0.00,30.00,60.00,30,0,0
+10125718,Marjorie Morales,General Administration Analyst - John Maunes,TELUS CSE - D&S Manual Tester,46.00,460.00,920.00,32,14,0.00,30.00,60.00,30,0,0
 10006267,Mark Anthony Carlos,Digital Workplace - Technology and Application Support,TELUS CSE - DCS&S Prod CTL Order Management Support,107.00,"1,070.00","2,140.00",66,41,0.00,30.00,60.00,30,0,0
 10010661,Mark Anthony Castillo,Hybrid Cloud - Enable TELUS,TELUS CSE - DCS&S UNIX Server Management,103.00,"1,030.00","2,060.00",86,17,0.00,150.00,300.00,150,0,0
 10006099,Mark Anthony Militar,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - DS Business Services Support Center,18.00,180.00,360.00,18,0,0.00,0.00,0.00,0,0,0
@@ -833,7 +833,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10165647,Rickcele Mae Galino,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - DCS&S Single Point of Contact,49.00,490.00,980.00,13,36,0.00,0.00,0.00,0,0,0
 10164821,Noel Lumanas,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - DCS&S Single Point of Contact,18.00,180.00,360.00,18,0,0.00,0.00,0.00,0,0,0
 10163915,Carmencita Papasin,Triple A,TELUS CSE - CEOE Technology Operations,46.00,460.00,920.00,35,11,0.00,0.00,0.00,0,0,0
-10163416,Rogelio Garapan,Application Support Services - John Maunes,TELUS Health - Service Delivery and Operations,54.00,540.00,"1,080.00",40,14,0.00,30.00,60.00,30,0,0
+10163416,Rogelio Garapan,General Administration Analyst - John Maunes,TELUS Health - Service Delivery and Operations,54.00,540.00,"1,080.00",40,14,0.00,30.00,60.00,30,0,0
 10025607,Marvin Rebong,Business Enablement,MDS - Business Enablement,3.00,30.00,60.00,3,0,0.00,0.00,0.00,0,0,0
 10170553,Sanrho Comas,-,TELUS CSE - DCS&S Service Asset & Config Management,76.00,760.00,"1,520.00",47,29,0.00,30.00,60.00,30,0,0
 10167751,Maria Angelica Panganiban,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,Genesys - Security Operations Center,16.00,160.00,320.00,16,0,0.00,0.00,0.00,0,0,0
@@ -845,7 +845,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10049433,Jennifer Macaroncio,Digital Workplace - Technology and Application Support,TELUS TBS - BP&S Reliability and Assurance Support,49.00,490.00,980.00,31,18,0.00,30.00,60.00,30,0,0
 10179638,Edwin Esteban,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS TBS - GoCo IT/Systems Administration,38.00,380.00,760.00,24,14,0.00,0.00,0.00,0,0,0
 10179627,Krisha Abegail Decano,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - DCS&S Single Point of Contact,26.00,260.00,520.00,5,21,0.00,0.00,0.00,0,0,0
-10179508,Ryan Joseph Arellano,Application Support Services - John Maunes,TELUS CSE - D&S JAVA Shared Pool,44.00,440.00,880.00,13,31,0.00,0.00,0.00,0,0,0
+10179508,Ryan Joseph Arellano,General Administration Analyst - John Maunes,TELUS CSE - D&S JAVA Shared Pool,44.00,440.00,880.00,13,31,0.00,0.00,0.00,0,0,0
 10179506,Anthony Montalban,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - DCS&S Single Point of Contact,21.00,210.00,420.00,21,0,0.00,0.00,0.00,0,0,0
 10179500,Jack Rubi,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - DCS&S Single Point of Contact,25.00,250.00,500.00,25,0,0.00,0.00,0.00,0,0,0
 10179491,Randolph Bañares,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,Genesys - Service Desk,8.00,80.00,160.00,8,0,0.00,0.00,0.00,0,0,0
@@ -907,7 +907,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10014684,Imari Joy Paril,Digital Workplace - Technology and Application Support,TELUS TBS - PI&AT SFDC Support,14.00,140.00,280.00,8,6,0.00,0.00,0.00,0,0,0
 10013799,Kyle Ivan Magno,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,Genesys - Service Desk,9.00,90.00,180.00,3,6,0.00,0.00,0.00,0,0,0
 10006263,Danniel Romero,Digital Workplace - Technology and Application Support,TELUS CSE - DCS&S Prod CTL Order Management Support,49.00,490.00,980.00,31,18,0.00,50.00,100.00,50,0,0
-10187015,Erica Mae Borromeo,Application Support Services - Manuel Go,TELUS CSE - D&S Order Processing,47.00,470.00,940.00,21,26,0.00,0.00,0.00,0,0,0
+10187015,Erica Mae Borromeo,General Administration Analyst - Manuel Go,TELUS CSE - D&S Order Processing,47.00,470.00,940.00,21,26,0.00,0.00,0.00,0,0,0
 10187013,Patricia Anne Valenzuela,Application Support Services - Manuel Go,TELUS CSE - D&S Order Processing,50.00,500.00,"1,000.00",21,29,0.00,0.00,0.00,0,0,0
 10187005,Arnold Sallan,Application Support Services - John Maunes,TELUS CSE - D&S Wireless Customer Care,33.00,330.00,660.00,24,9,0.00,30.00,60.00,30,0,0
 10187004,Lhorena Jane Deiparine,Application Support Services - John Maunes,TELUS CSE - D&S Wireless Customer Care,36.00,360.00,720.00,24,12,0.00,30.00,60.00,30,0,0
@@ -1120,7 +1120,7 @@ workdayId,employeeName,practice,functionalArea,totalStars,starPoints,starsPesoCo
 10219982,Edchelle Bilinario,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS TBS - Fully Managed Service Desk,12.00,120.00,240.00,6,6,0.00,0.00,0.00,0,0,0
 10219506,Mecaela Guinto,Hybrid Cloud - Shared Services,TELUS CSE - Cloud Project Services,20.00,200.00,400.00,3,17,0.00,0.00,0.00,0,0,0
 10217900,Kevin John Partible,Hybrid Cloud - Enable TELUS,TELUS CSE - DCS&S Database Administration,3.00,30.00,60.00,3,0,0.00,0.00,0.00,0,0,0
-10215689,Carl Vincent Polvorosa,Application Support Services - John Maunes,TELUS CSE - D&S JAVA Shared Pool,35.00,350.00,700.00,3,32,0.00,0.00,0.00,0,0,0
+10215689,Carl Vincent Polvorosa,General Administration Analyst - John Maunes,TELUS CSE - D&S JAVA Shared Pool,35.00,350.00,700.00,3,32,0.00,0.00,0.00,0,0,0
 10214912,Wil Joseph Bacante,Application Support Services - Manuel Go,TELUS CSE - D&S JAVA Shared Pool,23.00,230.00,460.00,0,23,0.00,0.00,0.00,0,0,0
 10005441,Anthony De Guzman,Digital Workplace - Service Desk Tier 1/2 & Service Fulfillment,TELUS CSE - Situation & Incident Management,38.00,380.00,760.00,3,35,0.00,0.00,0.00,0,0,0
 10004125,Michelle Cepada,Application Support Services - Manuel Go,TELUS HS - CE Workflow Engineer Services,6.00,60.00,120.00,0,6,0.00,0.00,0.00,0,0,0

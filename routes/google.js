@@ -24,7 +24,7 @@ router.get("/redirect", async (req, res) => {
   const code = req.query;
   const authDetails = {
     code: decodeURIComponent(code.code),
-    scope: decodeURIComponent(code.scope).replaceAll("+", " "),
+    scope: decodeURIComponent(code.scope),
     authuser: code.authUser,
     hd: code.hd,
     prompt: code.prompt,
