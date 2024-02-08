@@ -46,6 +46,12 @@ try {
         postEventSurveyURL: {
             type: String
         },
+        estimatedBudget: {
+            type: Number
+        },
+        numberOfInviteSent: {
+            type: Number
+        },
         starsNum: {
             type: Number
         },
