@@ -16,7 +16,6 @@ const taskRouter = require("./routes/taskRoute");
 const addEventRouter = require("./routes/addEventRoute");
 const googleRouter = require("./routes/google");
 const teamMemberRouter = require("./routes/teamMemberRoute");
-const registrationRouter = require("./routes/registrationRoute.js");
 
 const app = express();
 
@@ -38,7 +37,6 @@ app.use("/events", eventsRouter);
 app.use("/order", orderRouter);
 app.use("/task", taskRouter);
 app.use("/teamMember", teamMemberRouter);
-app.use("/registrations", registrationRouter);
 
 
 
