@@ -88,9 +88,21 @@ try {
 		},
         eventType: { 
             type: String
+        },
+        attendees: {
+            type: Number
+        },
+        targetCompliance: {
+            type: Number
+        },
+        tinyUrl: {
+            type: String
+        },
+        modalUrl: {
+            type: String
         }
+
     
-        
     });
 
     eventSchema.pre('save', function (next) {
