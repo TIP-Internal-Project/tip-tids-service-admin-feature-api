@@ -12,7 +12,10 @@ try {
 		},
         email: {
             type: String
-        }	
+        },
+        address: {
+            type: String
+        }
     });
 
 	registrationSchema.set('toJSON', {
