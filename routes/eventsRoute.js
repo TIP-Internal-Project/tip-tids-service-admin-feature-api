@@ -12,6 +12,10 @@ const multerMiddleware = multer({
 
 router.get('/getAllEvents', eventsController.getAllEvents);
 
+router.post('/getEventDetailsByDate', eventsController.getEventDetailsByDate);
+
+router.get('/getEventDetails/:eventId', eventsController.getEventDetails);
+
 router.post('/register', eventsController.register);
 
 router.get('/getUnregisteredEvents/:email', eventsController.getUnregisteredEvents);

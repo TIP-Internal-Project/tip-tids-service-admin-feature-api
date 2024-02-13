@@ -92,6 +92,12 @@ try {
         attendees: {
             type: Number
         },
+        registrants: {
+            type: Number
+        },
+        didNotAttend: {
+            type: Number
+        },
         targetCompliance: {
             type: Number
         },

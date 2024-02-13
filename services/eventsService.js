@@ -20,6 +20,22 @@ class EventsService {
 		return events;
 	}
 
+	async getEventDetailsByDate(eventBody) {
+		const targetDate = new Date(eventBody.eventDate);
+		const startDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+		const endDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate() + 1);
+		const eventDetails = await Event.find({eventDate: {
+			$gte: startDate,
+			$lt: endDate
+		  }});
+		return eventDetails;
+		}
+
+	async getEventDetails(eventId) {
+		const eventDetails = await Event.find({eventId: eventId});
+		return eventDetails;
+	}
+
 	async register(registrationBody) {
 		const registration = await Registration.create(registrationBody);
 		return registration;
