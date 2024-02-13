@@ -5,6 +5,17 @@ const getAllEvents = async (req, res) => {
 	res.status(200).json(events);
 };
 
+const getEventDetailsByDate = async (req, res) => {
+	console.log(req.body);
+	const eventDetails = await EventsService.getEventDetailsByDate(req.body);
+	res.status(200).json(eventDetails);
+};
+
+const getEventDetails = async (req, res) => {
+	const eventDetails = await EventsService.getEventDetails(req.params.eventId);
+	res.status(200).json(eventDetails);
+};
+
 const register = async (req, res) => {
 	const registration = await EventsService.register(req.body);
 	res.status(200).json(registration);
@@ -46,4 +57,4 @@ const deleteEvent = async (req, res) => {
   	res.status(200).json(event)
 }
 
-module.exports = { getAllEvents, register, getUnregisteredEvents, getRegisteredEvents, updateEvent, deleteEvent }
+module.exports = { getAllEvents, getEventDetailsByDate, getEventDetails, register, getUnregisteredEvents, getRegisteredEvents, updateEvent, deleteEvent }
