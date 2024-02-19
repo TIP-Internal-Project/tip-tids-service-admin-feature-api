@@ -27,7 +27,9 @@ class EventsService {
 		const eventDetails = await Event.find({startDate: {
 			$gte: startDate,
 			$lt: endDate
-		  }});
+		  },
+		  status: 'Completed'
+		});
 		return eventDetails;
 		}
 
