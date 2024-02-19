@@ -21,10 +21,10 @@ class EventsService {
 	}
 
 	async getEventDetailsByDate(eventBody) {
-		const targetDate = new Date(eventBody.eventDate);
+		const targetDate = new Date(eventBody.startDate);
 		const startDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
 		const endDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate() + 1);
-		const eventDetails = await Event.find({eventDate: {
+		const eventDetails = await Event.find({startDate: {
 			$gte: startDate,
 			$lt: endDate
 		  }});
