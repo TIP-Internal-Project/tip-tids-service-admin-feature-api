@@ -13,8 +13,14 @@ try {
         email: {
             type: String
         },
-        address: {
+        location: {
             type: String
+        },
+        attendanceType: {
+            type: String
+        },
+        registrationDate: {
+            type: Date
         }
     });
 
