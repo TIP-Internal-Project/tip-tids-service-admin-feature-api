@@ -5,11 +5,11 @@ const { ObjectId } = mongoose.Types;
 const { Storage } = require('@google-cloud/storage');
 
 const storage = new Storage({
-	projectId: 'engagement-app-288317', 
-	keyFilename: './engagementAppKey.json', 
+	projectId: "engagement-app-tids",
+	keyFilename: "./engagementAppKey.json",
   });
   
-  const bucket = storage.bucket('engagement-app-image-storage'); 
+  const bucket = storage.bucket('engagement-app-storage'); 
   
 
 
@@ -77,8 +77,7 @@ class EventsService {
 		  if (imageFile) {
 			console.log('Calling uploadImage function...');
 			 
-			const fileName = `images/${title}-${datePart}-${timePart}-${imageFile.originalname}`;
-	  
+			const fileName = `"images/${title}-${datePart}-${timePart}-${imageFile.originalname}"`;
 			imageUrl = await this.uploadImage(imageFile.buffer, fileName);
 			console.log('Image URL:', imageUrl);
 	  
@@ -102,7 +101,7 @@ class EventsService {
 		  console.log('Uploading image:', fileName, 'Buffer size:', imageBuffer.length);
 		  const file = bucket.file(fileName);
 		  await file.save(imageBuffer);
-	  
+
 		  const authenticatedURL = `https://storage.cloud.google.com/${bucket.name}/${file.name}`;
 		  console.log('Image uploaded. Public URL:', authenticatedURL);
 	  
