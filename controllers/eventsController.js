@@ -38,7 +38,7 @@ const updateEvent = async (req, res) => {
 	if (imageFile) {
 	  
 	  const imageBuffer = imageFile.buffer;
-	  const fileName = `${Date.now()}-${imageFile.originalname}`;
+	  const fileName = `images/${Date.now()}-${imageFile.originalname}`;
 	  const imageUrl = await EventsService.uploadImage(imageBuffer, fileName);
 	  updatedDetails.imageUrl = imageUrl;
 	}

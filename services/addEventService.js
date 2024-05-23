@@ -2,11 +2,11 @@ const Event = require("../models/Event");
 const { Storage } = require("@google-cloud/storage");
 
 const storage = new Storage({
-  projectId: "engagement-app-288317",
+  projectId: "engagement-app-tids",
   keyFilename: "./engagementAppKey.json",
 });
 
-const bucket = storage.bucket("engagement-app-image-storage");
+const bucket = storage.bucket("engagement-app-storage");
 
 // Set the schema options for the Event model
 Event.schema.set("toJSON", {
@@ -36,7 +36,7 @@ class AddEventService {
         imageUrl = await this.uploadImage(imageFile.buffer, fileName);
       } else {
         imageUrl =
-          "https://storage.cloud.google.com/engagement-app-image-storage/images/DefaultEventImage.png";
+          `https://storage.cloud.google.com/${bucket.name}/images/DefaultEventImage.png`;
       }
 
       // Create the event object with image URL
