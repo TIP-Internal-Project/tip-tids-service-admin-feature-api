@@ -16,9 +16,6 @@ try {
 		dueDate: {
 			type: Date
 		},
-		time: {
-			type: String
-		},
 		details: {
             type: String
         },
