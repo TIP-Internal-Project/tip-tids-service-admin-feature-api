@@ -1,3 +1,4 @@
 module.exports = {
-    databaseUri: 'mongodb://api_user:api1234@127.0.0.1:27017/tip'
+    databaseUri: 'mongodb://3AUserQA:3ngag3m3ntAppQA@qa-engagement-app.com:27017/tip'
 }
+
