@@ -7,14 +7,14 @@ const cors = require("cors");
 require("./database");
 const moment = require("moment-timezone");
 
-const indexRouter = require("./routes");
-const featuresRouter = require("./routes/features");
-const overviewRouter = require("./routes/overviewRoute");
-const eventsRouter = require("./routes/eventsRoute");
-const orderRouter = require("./routes/orderRoute");
-const taskRouter = require("./routes/taskRoute");
-const googleRouter = require("./routes/google");
-const teamMemberRouter = require("./routes/teamMemberRoute");
+const indexRouter = require("./routes/IndexRoute");
+const featuresRouter = require("./routes/FeaturesRoute");
+const overviewRouter = require("./routes/OverviewRoute");
+const eventsRouter = require("./routes/EventsRoute");
+const orderRouter = require("./routes/OrderRoute");
+const taskRouter = require("./routes/TaskRoute");
+const googleRouter = require("./routes/GoogleRoute");
+const teamMemberRouter = require("./routes/TeamMemberRoute");
 const TeamRosterRoute = require("./routes/TeamRosterRoute");
 
 const app = express();
