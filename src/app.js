@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 require("./database");
-const moment = require('moment-timezone');
+const moment = require("moment-timezone");
 
 const indexRouter = require("./routes");
 const featuresRouter = require("./routes/features");
@@ -13,9 +13,9 @@ const overviewRouter = require("./routes/overviewRoute");
 const eventsRouter = require("./routes/eventsRoute");
 const orderRouter = require("./routes/orderRoute");
 const taskRouter = require("./routes/taskRoute");
-const addEventRouter = require("./routes/addEventRoute");
 const googleRouter = require("./routes/google");
 const teamMemberRouter = require("./routes/teamMemberRoute");
+const TeamRosterRoute = require("./routes/TeamRosterRoute");
 
 const app = express();
 
@@ -37,24 +37,20 @@ app.use("/events", eventsRouter);
 app.use("/order", orderRouter);
 app.use("/task", taskRouter);
 app.use("/teamMember", teamMemberRouter);
-
-
-
-app.use("/createEvent", addEventRouter);
+app.use("/teamRoster", TeamRosterRoute);
 
 app.use("/google", googleRouter);
 
-
 const PORT = process.env.PORT || 80; // Use port 80 or the PORT environment variable
 
-app.get('/status', (req, res) => {
+app.get("/status", (req, res) => {
   // You can perform any checks or logic here to determine the health status
   const isHealthy = true; // Example health check logic
 
   if (isHealthy) {
-    res.status(200).json({ status: 'ok' }); // Respond with HTTP 200 and a JSON indicating health
+    res.status(200).json({ status: "ok" }); // Respond with HTTP 200 and a JSON indicating health
   } else {
-    res.status(500).json({ status: 'error' }); // Respond with HTTP 500 if not healthy
+    res.status(500).json({ status: "error" }); // Respond with HTTP 500 if not healthy
   }
 });
 
@@ -62,7 +58,6 @@ app.get('/status', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -80,21 +75,23 @@ app.use(function (err, req, res) {
   res.render("error");
 });
 
-const schedule = require('node-schedule');
-const Event = require('./models/Event');
+const schedule = require("node-schedule");
+const Event = require("./models/Event");
 
-schedule.scheduleJob('*/5 * * * *', async () => {
+schedule.scheduleJob("*/5 * * * *", async () => {
   const now = new Date();
   // const manilaTime = new Date().toLocaleString("en-GB", { timeZone: "Asia/Manila" });
 
   const outdatedEvents = await Event.find({
     endDate: { $lt: now },
-    status: { $nin: ['Completed', 'Archived'] },
+    status: { $nin: ["Completed", "Archived"] },
   });
 
   for (const event of outdatedEvents) {
-    if(new Date(event.endDate.setHours(event.endDate.getHours() + 12)) <= now){
-      event.status = 'Completed';
+    if (
+      new Date(event.endDate.setHours(event.endDate.getHours() + 12)) <= now
+    ) {
+      event.status = "Completed";
       await event.save();
     }
   }
