@@ -7,7 +7,7 @@ const cors = require("cors");
 require("./database");
 const moment = require("moment-timezone");
 
-const indexRouter = require("./routes/IndexRoute");
+const IndexRouter = require("./routes/IndexRoute");
 const featuresRouter = require("./routes/FeaturesRoute");
 const overviewRouter = require("./routes/OverviewRoute");
 const eventsRouter = require("./routes/EventsRoute");
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use("/", IndexRouter);
 app.use("/features", featuresRouter);
 app.use("/overview", overviewRouter);
 app.use("/events", eventsRouter);
