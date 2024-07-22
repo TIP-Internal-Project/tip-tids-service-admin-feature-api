@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const eventsController = require("../controllers/EventsController");
-const multer = require("multer");
 const upload = require("../middleware/UploadMiddleware");
 
 router.get("/getAllEvents", eventsController.getAllEvents);
