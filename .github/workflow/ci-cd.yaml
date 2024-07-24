@@ -8,7 +8,7 @@ on:
       environment:
         description: "Environment to deploy to"
         required: true
-        default: "production"
+        default: "testing"
         type: choice
         options:
           - production
@@ -63,26 +63,9 @@ jobs:
 
     - name: Build Docker image
       run: |
-        IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/react-app:${{ github.sha }}
-        docker build --build-arg REACT_APP_ENV=$REACT_APP_ENV \
-                     --build-arg CREDS_JSON=${{ secrets.CREDS_JSON_TESTING }} \
-                     --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
-                     -t $IMAGE_TAG .
-        docker push $IMAGE_TAG
-
-    - name: Build Docker image
-      run: |
-        # Set build environment based on GitHub input
-        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
-          export REACT_APP_ENV=pr
-          export ENGAGEMENT_APP_KEY_JSON="${{ secrets.ENGAGEMENT_APP_KEY_JSON_PRODUCTION }}"
-        else
-          export REACT_APP_ENV=testing
-          export ENGAGEMENT_APP_KEY_JSON="${{ secrets.ENGAGEMENT_APP_KEY_JSON_TESTING }}"
-        fi
         IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }}
         docker build --build-arg REACT_APP_ENV=$REACT_APP_ENV \
-                     --build-arg CREDS_JSON=${{ secrets.ENGAGEMENT_APP_API_CREDS }} \
+                     --build-arg CREDS_JSON=${{ secrets.CREDS_JSON_TESTING }} \
                      --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
                      -t $IMAGE_TAG .
         docker push $IMAGE_TAG
