@@ -1,18 +1,28 @@
-FROM node:14-alpine
+# Use an official Node.js runtime as a parent image
+FROM node:14
 
-EXPOSE 3001 80
-
+# Set the working directory
 WORKDIR /usr/src/app
 
-COPY package.json package-lock.json* ./
-
+# Install dependencies
+COPY package*.json ./
 RUN npm install
 
+# Copy application source code
 COPY . .
 
-RUN apk add --update curl
+# Add credentials to the /src directory from environment variables
+ARG CREDS_JSON
+ARG ENGAGEMENT_APP_KEY_JSON
+RUN echo "$CREDS_JSON" > ./src/creds.json
+RUN echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
-  CMD curl -fs http://localhost:80/ || exit 1
+# Build the application with the environment variable
+ARG REACT_APP_ENV=production
+RUN npm run build -- --env $REACT_APP_ENV
 
-CMD [ "node", "./bin/www"]
+# Expose the port that your app runs on
+EXPOSE 8080
+
+# Command to run the application
+CMD [ "node", "bin/www" ]
