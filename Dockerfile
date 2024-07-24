@@ -22,8 +22,7 @@ RUN if [ -n "$CREDS_JSON" ]; then echo "$CREDS_JSON" | base64 -d > ./src/creds.j
     if [ -n "$ENGAGEMENT_APP_KEY_JSON" ]; then echo "$ENGAGEMENT_APP_KEY_JSON" | base64 -d > ./src/engagementAppKey.json; else echo "{}" > ./src/engagementAppKey.json; fi
 
 # Expose the port that Cloud Run will use to serve the application
-ENV PORT=3001
-EXPOSE 3001
+EXPOSE 8080
 
 # Command to run the application
 CMD [ "npm", "start" ]
