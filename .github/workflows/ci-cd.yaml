@@ -65,14 +65,14 @@ jobs:
           gcloud secrets versions access latest --secret=ENGAGEMENT_APP_CREDS_QA > creds.json
           echo "CREDS_JSON=$(cat creds.json)" >> $GITHUB_ENV
 
-    - name: Build Docker image
-      run: |
-        IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }}
-        docker build --build-arg NODE_ENV=${{ github.event.inputs.environment }} \
-                     --build-arg CREDS_JSON="$CREDS_JSON" \
-                     --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
-                     -t $IMAGE_TAG .
-        docker push $IMAGE_TAG
+      - name: Build Docker image
+        run: |
+          IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }}
+          docker build --build-arg NODE_ENV=${{ github.event.inputs.environment }} \
+                       --build-arg CREDS_JSON="$CREDS_JSON" \
+                       --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
+                       -t $IMAGE_TAG .
+          docker push $IMAGE_TAG
 
       - name: Deploy to Cloud Run
         run: |
