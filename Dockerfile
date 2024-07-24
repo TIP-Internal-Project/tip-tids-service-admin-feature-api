@@ -11,15 +11,15 @@ RUN npm install
 # Copy application source code
 COPY . .
 
-# Add environment-specific credentials to the /src directory
-ARG REACT_APP_ENV
-ARG CREDS_JSON
-ARG ENGAGEMENT_APP_KEY_JSON
-RUN echo "$CREDS_JSON" > ./src/creds.json && \
-    echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
-
-# Expose the port that your app runs on
+# Expose the port that Cloud Run will use to serve the application
 EXPOSE 8080
 
+# Set environment variables (optional, can be set directly in Cloud Run configuration)
+# ARG REACT_APP_ENV
+# ARG CREDS_JSON
+# ARG ENGAGEMENT_APP_KEY_JSON
+# RUN echo "$CREDS_JSON" > ./src/creds.json && \
+#     echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
+
 # Command to run the application
-CMD [ "node", "bin/www" ]
+CMD [ "npm", "start" ]
