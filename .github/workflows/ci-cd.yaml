@@ -1,5 +1,5 @@
 name: Deploy to Cloud Run
-run-name: "Deploy ${{ github.ref_name }} to [ ${{ inputs.environment }} ]"
+
 on:
   workflow_dispatch:
     inputs:
@@ -47,31 +47,36 @@ jobs:
         run: |
           gcloud auth configure-docker
 
-      - name: Set environment variables based on input
+      - name: Set environment variables for PRODUCTION
+        if: github.event.inputs.environment == 'production'
         run: |
-          if [ "${{ github.event.inputs.environment }}" == "production" ]; then
-            echo "NODE_ENV=production" >> $GITHUB_ENV
-            echo "REACT_APP_ENV=pr" >> $GITHUB_ENV
-            echo "ENGAGEMENT_APP_KEY_JSON=${{ secrets.ENGAGEMENT_APP_KEY_JSON_PRODUCTION }}" >> $GITHUB_ENV
-          else
-            echo "NODE_ENV=testing" >> $GITHUB_ENV
-            echo "REACT_APP_ENV=qa" >> $GITHUB_ENV
-            echo "ENGAGEMENT_APP_KEY_JSON=${{ secrets.ENGAGEMENT_APP_KEY_JSON_TESTING }}" >> $GITHUB_ENV
-          fi
+          echo "REACT_APP_ENV=qa" >> $GITHUB_ENV
+          gcloud secrets versions access latest --secret=ENGAGEMENT_APP_KEY_JSON > engagementAppKey.json
+          echo "ENGAGEMENT_APP_KEY_JSON=$(cat engagementAppKey.json)" >> $GITHUB_ENV
+          gcloud secrets versions access latest --secret=ENGAGEMENT_APP_CREDS_PR > creds.json
+          echo "CREDS_JSON=$(cat creds.json)" >> $GITHUB_ENV
 
-      - name: Build Docker image
+      - name: Set environment variables for TESTING
+        if: github.event.inputs.environment == 'testing'
         run: |
-          IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }}
-          docker build --build-arg NODE_ENV=$NODE_ENV \
-                       --build-arg REACT_APP_ENV=$REACT_APP_ENV \
-                       --build-arg CREDS_JSON=${{ secrets.CREDS_JSON }} \
-                       --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
-                       -t $IMAGE_TAG .
-          docker push $IMAGE_TAG
+          echo "REACT_APP_ENV=qa" >> $GITHUB_ENV
+          gcloud secrets versions access latest --secret=ENGAGEMENT_APP_KEY_JSON > engagementAppKey.json
+          echo "ENGAGEMENT_APP_KEY_JSON=$(cat engagementAppKey.json)" >> $GITHUB_ENV
+          gcloud secrets versions access latest --secret=ENGAGEMENT_APP_CREDS_QA > creds.json
+          echo "CREDS_JSON=$(cat creds.json)" >> $GITHUB_ENV
+
+    - name: Build Docker image
+      run: |
+        IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }}
+        docker build --build-arg NODE_ENV=${{ github.event.inputs.environment }} \
+                     --build-arg CREDS_JSON="$CREDS_JSON" \
+                     --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
+                     -t $IMAGE_TAG .
+        docker push $IMAGE_TAG
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy $SERVICE_NAME \
+          gcloud run deploy $REACT_APP_ENV-$SERVICE_NAME \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }} \
             --platform managed \
             --region ${{ secrets.GCP_REGION }} \
