@@ -11,13 +11,15 @@ RUN npm install
 # Copy application source code
 COPY . .
 
-# Add environment-specific credentials to the /src directory
+# Set environment variables
 ARG NODE_ENV
 ARG CREDS_JSON
 ARG ENGAGEMENT_APP_KEY_JSON
 ENV NODE_ENV=${NODE_ENV}
-RUN echo "$CREDS_JSON" > ./src/creds.json && \
-    echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
+
+# Decode and write secrets if provided
+RUN if [ -n "$CREDS_JSON" ]; then echo "$CREDS_JSON" | base64 -d > ./src/creds.json; else echo "{}" > ./src/creds.json; fi && \
+    if [ -n "$ENGAGEMENT_APP_KEY_JSON" ]; then echo "$ENGAGEMENT_APP_KEY_JSON" | base64 -d > ./src/engagementAppKey.json; else echo "{}" > ./src/engagementAppKey.json; fi
 
 # Expose the port that Cloud Run will use to serve the application
 EXPOSE 8080
