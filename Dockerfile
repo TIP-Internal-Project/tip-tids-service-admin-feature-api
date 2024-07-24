@@ -16,8 +16,13 @@ ARG NODE_ENV
 ARG CREDS_JSON
 ARG ENGAGEMENT_APP_KEY_JSON
 ENV NODE_ENV=${NODE_ENV}
-RUN echo "$CREDS_JSON" > ./src/creds.json && \
-    echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
+
+# Decode and write JSON files
+RUN echo "$CREDS_JSON" | base64 -d > ./src/creds.json && \
+    echo "$ENGAGEMENT_APP_KEY_JSON" | base64 -d > ./src/engagementAppKey.json && \
+    # Debug output to check file content
+    cat ./src/creds.json && \
+    cat ./src/engagementAppKey.json
 
 # Expose the port that Cloud Run will use to serve the application
 EXPOSE 8080
