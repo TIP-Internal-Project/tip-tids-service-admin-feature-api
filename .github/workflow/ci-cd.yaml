@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SERVICE_NAME: engagement-app-v4
+      SERVICE_NAME: engagement-app-api
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       REGION: ${{ secrets.GCP_REGION }}
       CI: false
@@ -49,24 +49,48 @@ jobs:
       run: |
         gcloud auth configure-docker
 
+    - name: Set environment variables for production
+      if: github.event.inputs.environment == 'production'
+      run: |
+        echo "REACT_APP_ENV=pr" >> $GITHUB_ENV
+        echo "ENGAGEMENT_APP_KEY_JSON=${{ secrets.ENGAGEMENT_APP_KEY_JSON_PRODUCTION }}" >> $GITHUB_ENV
+
+    - name: Set environment variables for testing
+      if: github.event.inputs.environment == 'testing'
+      run: |
+        echo "REACT_APP_ENV=qa" >> $GITHUB_ENV
+        echo "ENGAGEMENT_APP_KEY_JSON=${{ secrets.ENGAGEMENT_APP_KEY_JSON_TESTING }}" >> $GITHUB_ENV
+
     - name: Build Docker image
       run: |
-        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
-          export BUILD_ENV=prod
-        else
-          export BUILD_ENV=test
-        fi
         IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/react-app:${{ github.sha }}
-        docker build --build-arg REACT_APP_ENV=$BUILD_ENV \
-                     --build-arg CREDS_JSON="${{ secrets.CREDS_JSON }}" \
-                     --build-arg ENGAGEMENT_APP_KEY_JSON="${{ secrets.ENGAGEMENT_APP_KEY_JSON }}" \
+        docker build --build-arg REACT_APP_ENV=$REACT_APP_ENV \
+                     --build-arg CREDS_JSON=${{ secrets.CREDS_JSON_TESTING }} \
+                     --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
+                     -t $IMAGE_TAG .
+        docker push $IMAGE_TAG
+
+    - name: Build Docker image
+      run: |
+        # Set build environment based on GitHub input
+        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          export REACT_APP_ENV=pr
+          export ENGAGEMENT_APP_KEY_JSON="${{ secrets.ENGAGEMENT_APP_KEY_JSON_PRODUCTION }}"
+        else
+          export REACT_APP_ENV=testing
+          export ENGAGEMENT_APP_KEY_JSON="${{ secrets.ENGAGEMENT_APP_KEY_JSON_TESTING }}"
+        fi
+        IMAGE_TAG=gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }}
+        docker build --build-arg REACT_APP_ENV=$REACT_APP_ENV \
+                     --build-arg CREDS_JSON=${{ secrets.ENGAGEMENT_APP_API_CREDS }} \
+                     --build-arg ENGAGEMENT_APP_KEY_JSON="$ENGAGEMENT_APP_KEY_JSON" \
                      -t $IMAGE_TAG .
         docker push $IMAGE_TAG
 
     - name: Deploy to Cloud Run
       run: |
         gcloud run deploy $SERVICE_NAME \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/react-app:${{ github.sha }} \
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/$REACT_APP_ENV-$SERVICE_NAME:${{ github.sha }} \
           --platform managed \
           --region ${{ secrets.GCP_REGION }} \
           --allow-unauthenticated
