@@ -11,15 +11,12 @@ RUN npm install
 # Copy application source code
 COPY . .
 
-# Add credentials to the /src directory from environment variables
+# Add environment-specific credentials to the /src directory
+ARG REACT_APP_ENV
 ARG CREDS_JSON
 ARG ENGAGEMENT_APP_KEY_JSON
-RUN echo "$CREDS_JSON" > ./src/creds.json
-RUN echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
-
-# Build the application with the environment variable
-ARG REACT_APP_ENV=production
-RUN npm run build -- --env $REACT_APP_ENV
+RUN echo "$CREDS_JSON" > ./src/creds.json && \
+    echo "$ENGAGEMENT_APP_KEY_JSON" > ./src/engagementAppKey.json
 
 # Expose the port that your app runs on
 EXPOSE 8080
