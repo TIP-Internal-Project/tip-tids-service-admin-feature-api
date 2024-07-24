@@ -42,7 +42,7 @@ app.use("/teamRoster", TeamRosterRoute);
 
 app.use("/google", googleRouter);
 
-const PORT = process.env.PORT || 80; // Use port 80 or the PORT environment variable
+const PORT = process.env.PORT || 3001; // Use port 80 or the PORT environment variable
 
 app.get("/status", (req, res) => {
   // You can perform any checks or logic here to determine the health status
