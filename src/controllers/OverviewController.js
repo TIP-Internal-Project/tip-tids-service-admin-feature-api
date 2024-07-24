@@ -1,4 +1,4 @@
-const OverviewService = require('../services/overviewService');
+const OverviewService = require("../services/OverviewService");
 
 const getUpcomingEventsCount = async (req, res) => {
   const eventsCount = await OverviewService.getUpcomingEventsCount();
@@ -6,13 +6,15 @@ const getUpcomingEventsCount = async (req, res) => {
 };
 
 const getPendingTasksCount = async (req, res) => {
-  const tasksCount = await OverviewService.getPendingTasksCount(req.params.email);
-  return res.status(200).json(tasksCount)
+  const tasksCount = await OverviewService.getPendingTasksCount(
+    req.params.email
+  );
+  return res.status(200).json(tasksCount);
 };
 
 const getTasksById = async (req, res) => {
   const tasks = await OverviewService.getTasksById(req.params.id);
-  return res.send(tasks)
+  return res.send(tasks);
 };
 
 const addTask = async (req, res) => {
@@ -32,10 +34,18 @@ const getTasks = async (req, res) => {
 
 const getTeamMemberInfoById = async (req, res) => {
   const teamMember = await OverviewService.getTeamMemberInfoById(req.params.id);
-  if(teamMember.length > 0) {
-    return res.send(teamMember)
+  if (teamMember.length > 0) {
+    return res.send(teamMember);
   }
-  res.status(404).json({ message: 'Id not found' });
+  res.status(404).json({ message: "Id not found" });
 };
 
-module.exports = {getUpcomingEventsCount, getPendingTasksCount, getTasksById, addTask, getEvents, getTasks, getTeamMemberInfoById};
+module.exports = {
+  getUpcomingEventsCount,
+  getPendingTasksCount,
+  getTasksById,
+  addTask,
+  getEvents,
+  getTasks,
+  getTeamMemberInfoById,
+};

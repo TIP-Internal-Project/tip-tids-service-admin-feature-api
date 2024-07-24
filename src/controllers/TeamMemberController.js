@@ -1,4 +1,4 @@
-const TeamMemberService = require("../services/teamMemberService");
+const TeamMemberService = require("../services/TeamMemberService");
 
 const getTeamMemberInfoByName = async (req, res) => {
   const teamMember = await TeamMemberService.getTeamMemberInfoByName(
