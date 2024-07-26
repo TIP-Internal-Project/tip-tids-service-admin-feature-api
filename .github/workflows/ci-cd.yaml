@@ -92,3 +92,63 @@ jobs:
             --platform managed \
             --region ${{ secrets.GCP_REGION }} \
             --allow-unauthenticated
+
+      - name: Notify team on Google Chat
+        if: success()
+        env:
+          GOOGLE_CHAT_WEBHOOK_URL: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+        run: |
+          # Define variables
+          APPLICATION_NAME="Engagement App API" # Replace with your application name
+          ENVIRONMENT="${{ github.event.inputs.environment }}"
+          BRANCH="${{ github.ref_name }}"
+          DEPLOYER="${{ github.actor }}"
+          
+          # Create the JSON payload
+          PAYLOAD=$(cat <<EOF
+          {
+            "cards": [
+              {
+                "header": {
+                  "title": "Deployment Notification",
+                  "subtitle": "${ENVIRONMENT} Environment"
+                },
+                "sections": [
+                  {
+                    "widgets": [
+                      {
+                        "keyValue": {
+                          "topLabel": "Application",
+                          "content": "${APPLICATION_NAME}"
+                        }
+                      },
+                      {
+                        "keyValue": {
+                          "topLabel": "Environment",
+                          "content": "${ENVIRONMENT}"
+                        }
+                      },
+                      {
+                        "keyValue": {
+                          "topLabel": "Branch",
+                          "content": "${BRANCH}"
+                        }
+                      },
+                      {
+                        "keyValue": {
+                          "topLabel": "Deployed By",
+                          "content": "${DEPLOYER}"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+          EOF
+          )
+          
+          # Send the notification to Google Chat
+          curl -X POST -H 'Content-Type: application/json' \
+               --data "${PAYLOAD}" $GOOGLE_CHAT_WEBHOOK_URL
