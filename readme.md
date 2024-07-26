@@ -12,7 +12,7 @@ The **Engagement Service Admin Feature API** provides various administrative fun
 
 ## Documentation
 
-The API documentation is available via Swagger. You can view it [here](path/to/your/swagger/index.html).
+The API documentation is available via Swagger. You can view it [here](doc/admin-feature.yam).
 
 ## YAML Configuration
 
