@@ -3,6 +3,7 @@ const Registration = require("../models/Registration");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { bucket } = require("../utils/StorageUtil");
+const createHttpError = require("http-errors");
 
 class EventsService {
   async getAllEvents() {
@@ -110,7 +111,7 @@ class EventsService {
       const event = await Event.findOne({ eventId: eventId }); // Find the event to update
 
       if (!event) {
-        throw new Error("Event not found");
+        throw new createHttpError(404, "Event not found");
       }
       const { title } = updatedDetails;
       let imageUrl = event.imageUrl;
@@ -135,7 +136,6 @@ class EventsService {
       console.log("Event updated:", event);
       return event;
     } catch (error) {
-      console.error("Error updating event:", error);
       throw error;
     }
   }
