@@ -7,6 +7,10 @@ const cors = require("cors");
 require("./database");
 const moment = require("moment-timezone");
 
+// Middleware
+const ErrorHandler = require("./middleware/ErrorHandler");
+
+// Routes
 const IndexRouter = require("./routes/IndexRoute");
 const featuresRouter = require("./routes/FeaturesRoute");
 const overviewRouter = require("./routes/OverviewRoute");
@@ -39,7 +43,6 @@ app.use("/order", orderRouter);
 app.use("/task", taskRouter);
 app.use("/teamMember", teamMemberRouter);
 app.use("/teamRoster", TeamRosterRoute);
-
 app.use("/google", googleRouter);
 
 app.get("/status", (req, res) => {
@@ -53,21 +56,12 @@ app.get("/status", (req, res) => {
   }
 });
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+  next(createError(404, "Not Found"));
 });
 
-// error handler
-app.use(function (err, req, res) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
+app.use(ErrorHandler);
 
 ScheduleJobs();
 
