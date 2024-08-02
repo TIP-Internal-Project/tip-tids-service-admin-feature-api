@@ -1,8 +1,8 @@
-# Engagement Service Admin Feature API
+# Service Admin Feature API
 
 ## Overview
 
-The **Engagement Service Admin Feature API** provides various administrative functionalities for managing engagements. This API is designed to support a range of administrative tasks and integrates with several dependencies to enhance its operations.
+The **Service Admin Feature API** provides various administrative functionalities for managing engagements. This API is designed to support a range of administrative tasks and integrates with several dependencies to enhance its operations.
 
 ## Features
 
