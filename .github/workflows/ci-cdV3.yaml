@@ -1,4 +1,4 @@
-name: Deploy to Cloud Run
+name: Deploy to Cloud Run for Version3
 run-name: "Deploy ${{ github.ref_name }} to [ ${{ inputs.environment }} ] "
 
 on:
