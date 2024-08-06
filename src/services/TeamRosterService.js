@@ -16,6 +16,7 @@ class TeamRosterService {
   }
 
   async getTeamMemberInfoByEmail(workEmailAddress) {
+    console.log(workEmailAddress);
     try {
       const teamMember = await TeamRoster.findOne({ workEmailAddress });
       if (!teamMember) {

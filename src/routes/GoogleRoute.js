@@ -10,12 +10,14 @@ const oauth2Client = new google.auth.OAuth2(
 );
 
 router.get("/auth", (req, res) => {
+  const redirectUrl = req.query.redirectUrl || "/"; // Default to root if no redirectUrl provided
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email",
     ],
+    state: redirectUrl, // Pass the redirect URL as state
   });
   res.send(url);
 });
