@@ -7,7 +7,7 @@ try {
 } catch (error) {
   const { Schema } = mongoose;
   const teamRosterSchema = new Schema({
-    workdayId: {
+    workorderId: {
       type: Number,
     },
     employeeName: {
@@ -38,6 +38,9 @@ try {
       type: String,
     },
     tidsPractice: {
+      type: String,
+    },
+    role: {
       type: String,
     },
   });
