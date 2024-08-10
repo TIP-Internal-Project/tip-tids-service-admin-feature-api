@@ -3,6 +3,8 @@ const router = express.Router();
 const { google } = require("googleapis");
 const creds = require("../creds.json");
 
+const allowedDomain = "telusinternational.com";
+
 const oauth2Client = new google.auth.OAuth2(
   (CLIENT_ID = creds.web.client_id),
   (CLIENT_SECRET = creds.web.client_secret),
@@ -13,6 +15,7 @@ router.get("/auth", (req, res) => {
   const redirectUrl = req.query.redirectUrl || "/"; // Default to root if no redirectUrl provided
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
+    hd: allowedDomain,
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email",
