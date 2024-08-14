@@ -6,12 +6,15 @@ const creds = require("../creds.json");
 const oauth2Client = new google.auth.OAuth2(
   (CLIENT_ID = creds.web.client_id),
   (CLIENT_SECRET = creds.web.client_secret),
-  (REDIRECT_URI = creds.web.redirect_uri)
+  (REDIRECT_URI = creds.web.redirect_uri),
+  
 );
 
 router.get("/auth", (req, res) => {
   const redirectUrl = req.query.redirectUrl || "/"; // Default to root if no redirectUrl provided
   const url = oauth2Client.generateAuthUrl({
+    // added hd (that will direct the user to login using the TI credentials)
+    hd: "telusinternational.com",
     access_type: "offline",
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
