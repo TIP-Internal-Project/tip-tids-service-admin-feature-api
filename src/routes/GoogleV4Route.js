@@ -26,7 +26,7 @@ router.get("/auth", (req, res) => {
 
 async function getUserData(access_token) {
   const response = await fetch(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
+    `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${access_token}`
   );
 
   if (!response.ok) {
