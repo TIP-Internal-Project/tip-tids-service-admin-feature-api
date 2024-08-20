@@ -23,6 +23,7 @@ The YAML configuration files for deployment or other configurations can be found
 ## Table of Contents
 
 - [Forking and Cloning](#forking-and-cloning)
+- [Database Setup](#database-setup)
 - [Installation](#installation)
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
@@ -59,7 +60,16 @@ To contribute to the project or use it locally, follow these steps:
    ```bash
    npm install
    ```
+## Database Setup
 
+1. Install Mongo Compass and Rancher Desktop
+2. Make sure Rancher Desktop is running
+    - On CMD run the following Scipt:
+         ```bash
+          docker run -d -p 27017:27017 mongo
+         ```
+    - Go back to Rancher Desktop > Container and check if mongo is running if not you can start it
+    
 ## Scripts
 
 The project includes the following npm scripts:
