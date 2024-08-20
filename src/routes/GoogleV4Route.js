@@ -48,7 +48,7 @@ router.get("/oauth", async function (req, res, next) {
 
     console.info("Tokens acquired:", tokens);
 
-    const user = await getUserData(oAuth2Client.credentials.access_token);
+    const user = await getUserData(tokens.access_token);
     console.info("User data: ", user);
 
     // Send the final response with both credentials and user details
