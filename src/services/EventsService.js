@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { bucket } = require("../utils/StorageUtil");
 const createHttpError = require("http-errors");
+const { formatDateToISOWithOffset } = require("../utils/DateUtils");
 
 class EventsService {
   async getAllEvents() {
@@ -83,9 +84,7 @@ class EventsService {
       const event = new Event({
         ...eventData,
         imageUrl,
-        createdDate: new Date(),
         qrCodeUrl: eventData.qrCodeUrl,
-        // Other event properties
       });
 
       // Generate the next eventId
