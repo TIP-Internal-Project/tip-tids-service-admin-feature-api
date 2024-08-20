@@ -18,6 +18,7 @@ const eventsRouter = require("./routes/EventsRoute");
 const orderRouter = require("./routes/OrderRoute");
 const taskRouter = require("./routes/TaskRoute");
 const googleRouter = require("./routes/GoogleRoute");
+const googleRouterV4 = require("./routes/GoogleV4Route");
 const TeamMemberPointsRouter = require("./routes/TeamMemberPointsRoute");
 const teamMemberRouter = require("./routes/TeamMemberRoute");
 const TeamRosterRoute = require("./routes/TeamRosterRoute");
@@ -46,6 +47,7 @@ app.use("/teamMemberPoints", TeamMemberPointsRouter);
 app.use("/teamMember", teamMemberRouter);
 app.use("/teamRoster", TeamRosterRoute);
 app.use("/google", googleRouter);
+app.use("/v4/google", googleRouterV4);
 
 app.get("/status", (req, res) => {
   // You can perform any checks or logic here to determine the health status

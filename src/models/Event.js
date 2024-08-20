@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { formatDateToISOWithOffset } = require("../utils/DateUtils");
 
 let Event;
 
@@ -63,7 +64,7 @@ try {
     },
     createdAt: {
       type: Date,
-      default: Date.now,
+      default: formatDateToISOWithOffset(new Date()),
     },
     createdBy: {
       type: String,
