@@ -109,6 +109,9 @@ try {
     modalUrl: {
       type: String,
     },
+    registrationCode: {
+      type: String,
+    },
   });
 
   // Middleware to set starsNum before saving
