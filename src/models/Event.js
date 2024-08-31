@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { formatDateToISOWithOffset } = require("../utils/DateUtils");
+const { formatDateToManilaUTC } = require("../utils/DateUtils");
 
 let Event;
 
@@ -64,7 +64,7 @@ try {
     },
     createdAt: {
       type: Date,
-      default: formatDateToISOWithOffset(new Date()),
+      default: formatDateToManilaUTC(new Date()),
     },
     createdBy: {
       type: String,

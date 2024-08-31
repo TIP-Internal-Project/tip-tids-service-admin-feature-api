@@ -9,4 +9,14 @@ router.get(
   TeamRosterController.getTeamMemberInfoByEmail
 );
 
+router.get(
+  "/getTeamMemberInfoByWorkorderId/:workorderId",
+  TeamRosterController.getTeamMemberInfoByWorkorderId
+);
+
+router.get(
+  "/getTeamMemberListByManager/:immediateManagerWorkorderId",
+  TeamRosterController.getTeamMemberListByManager
+);
+
 module.exports = router;

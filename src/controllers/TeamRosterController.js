@@ -14,7 +14,7 @@ const getTeamMemberInfoByEmail = async (req, res, next) => {
 
   // Check if the email parameter is missing or invalid
   if (!workEmailAddress || !workEmailAddress.includes("@")) {
-    return next(new CustomError(400, "Invalid or missing email parameter"));
+    return next(400, "Invalid or missing email parameter");
   }
 
   try {
@@ -27,4 +27,34 @@ const getTeamMemberInfoByEmail = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllTeamMember, getTeamMemberInfoByEmail };
+const getTeamMemberInfoByWorkorderId = async (req, res, next) => {
+  const { workorderId } = req.params;
+  try {
+    const teamMember = await TeamRosterService.getTeamMemberInfoByWorkorderId(
+      workorderId
+    );
+    res.status(200).json(teamMember);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getTeamMemberListByManager = async (req, res, next) => {
+  const { immediateManagerWorkorderId } = req.params;
+
+  try {
+    const teamMember = await TeamRosterService.getTeamMemberListByManager(
+      immediateManagerWorkorderId
+    );
+    res.status(200).json(teamMember);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllTeamMember,
+  getTeamMemberInfoByEmail,
+  getTeamMemberInfoByWorkorderId,
+  getTeamMemberListByManager,
+};

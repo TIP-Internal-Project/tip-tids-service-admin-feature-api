@@ -5,6 +5,7 @@ const { ObjectId } = mongoose.Types;
 const { bucket } = require("../utils/StorageUtil");
 const createHttpError = require("http-errors");
 const { formatDateToISOWithOffset } = require("../utils/DateUtils");
+const ChangeLog = require("../models/ChangeLog");
 
 class EventsService {
   async getAllEvents() {
@@ -108,6 +109,7 @@ class EventsService {
   async updateEvent(eventId, updatedDetails, imageFile) {
     try {
       const event = await Event.findOne({ eventId: eventId }); // Find the event to update
+      const oldData = event.toObject();
 
       if (!event) {
         throw new createHttpError(404, "Event not found");
@@ -131,6 +133,24 @@ class EventsService {
       event.set(updatedDetails);
 
       await event.save();
+
+      // Log changes
+      for (const key of Object.keys(updatedDetails)) {
+        const oldValue = oldData[key];
+        const newValue = updatedDetails[key];
+
+        // Ensure only changed fields are logged
+        if (oldValue !== newValue) {
+          await ChangeLog.create({
+            modelName: "Event",
+            documentId: event._id,
+            field: key,
+            oldValue,
+            newValue,
+            action: "update",
+          });
+        }
+      }
 
       console.log("Event updated:", event);
       return event;
