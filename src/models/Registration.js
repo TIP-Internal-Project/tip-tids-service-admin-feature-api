@@ -8,13 +8,17 @@ try {
   const { Schema } = mongoose;
   const registrationSchema = new Schema({
     eventId: {
-      type: String,
+      type: Number,
     },
     email: {
       type: String,
     },
     address: {
       type: String,
+    },
+    pointsAwarded: {
+      type: Boolean,
+      default: false,
     },
   });
 

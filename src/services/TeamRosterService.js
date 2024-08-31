@@ -16,13 +16,51 @@ class TeamRosterService {
   }
 
   async getTeamMemberInfoByEmail(workEmailAddress) {
-    console.log(workEmailAddress);
     try {
       const teamMember = await TeamRoster.findOne({ workEmailAddress });
       if (!teamMember) {
         throw new createHttpError(404, "Team member not found");
       }
       return teamMember;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getTeamMemberInfoByWorkorderId(workorderId) {
+    try {
+      const teamMember = await TeamRoster.findOne({ workorderId });
+      if (!teamMember) {
+        throw new createHttpError(404, "Team member not found");
+      }
+      return teamMember;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getTeamMemberListByManager(immediateManagerWorkorderId) {
+    try {
+      const teamMembers = await TeamRoster.find({
+        immediateManagerWorkorderId,
+      });
+
+      if (!teamMembers) {
+        throw new createHttpError(404, "Team roster not found");
+      }
+
+      const teamManagerInfo = await TeamRoster.findOne({
+        workorderId: immediateManagerWorkorderId,
+      });
+
+      if (!teamManagerInfo) {
+        throw new createHttpError(404, "Team manager not found");
+      }
+
+      return {
+        teamManagerInfo,
+        teamMembers,
+      };
     } catch (error) {
       throw error;
     }
