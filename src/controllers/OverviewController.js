@@ -10,10 +10,14 @@ const getUpcomingEventsCount = async (req, res) => {
 };
 
 const getPendingTasksCount = async (req, res) => {
-  const tasksCount = await OverviewService.getPendingTasksCount(
-    req.params.email
-  );
-  return res.status(200).json(tasksCount);
+  try {
+    const tasksCount = await OverviewService.getPendingTasksCount(
+      req.params.email
+    );
+    return res.status(200).json(tasksCount);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getTasksById = async (req, res) => {
