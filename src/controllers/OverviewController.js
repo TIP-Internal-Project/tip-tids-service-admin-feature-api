@@ -1,8 +1,12 @@
 const OverviewService = require("../services/OverviewService");
 
 const getUpcomingEventsCount = async (req, res) => {
-  const eventsCount = await OverviewService.getUpcomingEventsCount();
-  res.status(200).json(eventsCount);
+  try {
+    const eventsCount = await OverviewService.getUpcomingEventsCount();
+    res.status(200).json(eventsCount);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getPendingTasksCount = async (req, res) => {
@@ -13,23 +17,39 @@ const getPendingTasksCount = async (req, res) => {
 };
 
 const getTasksById = async (req, res) => {
-  const tasks = await OverviewService.getTasksById(req.params.id);
-  return res.send(tasks);
+  try {
+    const tasks = await OverviewService.getTasksById(req.params.id);
+    return res.send(tasks);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const addTask = async (req, res) => {
-  const task = await OverviewService.addTask(req.body);
-  res.status(200).json(task);
+  try {
+    const task = await OverviewService.addTask(req.body);
+    res.status(200).json(task);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getEvents = async (req, res) => {
-  const event = await OverviewService.getEvents();
-  res.status(200).json(event);
+  try {
+    const event = await OverviewService.getEvents();
+    res.status(200).json(event);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getTasks = async (req, res) => {
-  const task = await OverviewService.getTasks(req.params.email);
-  res.status(200).json(task);
+  try {
+    const task = await OverviewService.getTasks(req.params.email);
+    res.status(200).json(task);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getTeamMemberInfoById = async (req, res) => {

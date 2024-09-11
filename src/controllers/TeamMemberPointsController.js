@@ -18,12 +18,16 @@ const getTeamMemberPointsByEmail = async (req, res, next) => {
 };
 
 const addPoints = async (req, res) => {
-  const teamMember = await TeamMemberPointsService.addPoints(
-    req.body.email,
-    req.body.pointsToAdd,
-    req.body.category
-  );
-  res.status(200).json(teamMember);
+  try {
+    const teamMember = await TeamMemberPointsService.addPoints(
+      req.body.email,
+      req.body.pointsToAdd,
+      req.body.category
+    );
+    res.status(200).json(teamMember);
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = { getTeamMemberPointsByEmail, addPoints };

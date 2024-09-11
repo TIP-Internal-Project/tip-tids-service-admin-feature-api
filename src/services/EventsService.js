@@ -9,6 +9,8 @@ const ChangeLog = require("../models/ChangeLog");
 
 class EventsService {
   async getAllEvents() {
+
+    
     const events = await Event.find();
     return events;
   }

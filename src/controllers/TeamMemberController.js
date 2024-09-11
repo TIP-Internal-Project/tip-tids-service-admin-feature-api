@@ -11,11 +11,15 @@ const getTeamMemberInfoByName = async (req, res) => {
 };
 
 const addStarPoints = async (req, res) => {
-  const teamMember = await TeamMemberService.addStarPoints(
-    req.body.employeeName,
-    req.body.pointsToAdd
-  );
-  res.status(200).json(teamMember);
+  try {
+    const teamMember = await TeamMemberService.addStarPoints(
+      req.body.employeeName,
+      req.body.pointsToAdd
+    );
+    res.status(200).json(teamMember);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const checkDuplicates = async (req, res) => {
