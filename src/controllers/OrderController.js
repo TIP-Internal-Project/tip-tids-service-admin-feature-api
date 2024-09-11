@@ -2,22 +2,34 @@ const Order = require("../models/Order");
 const OrderService = require("../services/OrderService");
 
 const getAllOrders = async (req, res) => {
-  const orders = await OrderService.getAllOrders();
-  res.status(200).json(orders);
+  try {
+    const orders = await OrderService.getAllOrders();
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const addOrder = async (req, res) => {
-  const order = await OrderService.addOrder(req.body);
-  res.status(200).json(order);
+  try {
+    const order = await OrderService.addOrder(req.body);
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const updateOrderById = async (req, res) => {
-  console.log(req.params.orderId);
-  const order = await OrderService.updateOrderById(
-    req.params.orderId,
-    req.body
-  );
-  res.status(200).json(order);
+  try {
+    console.log(req.params.orderId);
+    const order = await OrderService.updateOrderById(
+      req.params.orderId,
+      req.body
+    );
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const updateOrder = async (req, res) => {
