@@ -29,7 +29,7 @@ class ImageService {
       // Generate a signed URL for read access
       const [url] = await file.getSignedUrl({
         action: "read",
-        expires: Date.now() + 1000 * 60 * 5, // URL expires in 5 minutes
+        expires: Date.now() + 1000 * 60 * 60 * 24, // URL expires in 24 hours
       });
 
       return url;
