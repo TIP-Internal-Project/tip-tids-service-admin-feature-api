@@ -75,7 +75,7 @@ class EventsService {
         await ImageService.uploadImage(imageFile.buffer, fileName);
         imageUrl = fileName;
       } else {
-        imageUrl = `/images/event/DefaultEventImage.png`;
+        imageUrl = `images/event/DefaultEventImage.png`;
       }
 
       // Create the event object with image URL
