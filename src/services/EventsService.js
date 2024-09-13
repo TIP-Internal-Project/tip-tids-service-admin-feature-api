@@ -1,16 +1,10 @@
 const Event = require("../models/Event");
 const Registration = require("../models/Registration");
-const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Types;
-const { bucket } = require("../utils/StorageUtil");
 const createHttpError = require("http-errors");
-const { formatDateToISOWithOffset } = require("../utils/DateUtils");
-const ChangeLog = require("../models/ChangeLog");
+const ImageService = require("./ImageService");
 
 class EventsService {
   async getAllEvents() {
-
-    
     const events = await Event.find();
     return events;
   }
@@ -77,10 +71,11 @@ class EventsService {
 
       if (imageFile) {
         console.log("Calling uploadImage function...");
-        const fileName = `images/${title}-${datePart}-${timePart}-${imageFile.originalname}`;
-        imageUrl = await this.uploadImage(imageFile.buffer, fileName);
+        const fileName = `images/event/${title}-${datePart}-${timePart}-${imageFile.originalname}`;
+        await ImageService.uploadImage(imageFile.buffer, fileName);
+        imageUrl = fileName;
       } else {
-        imageUrl = `https://storage.cloud.google.com/${bucket.name}/images/DefaultEventImage.png`;
+        imageUrl = `/images/event/DefaultEventImage.png`;
       }
 
       // Create the event object with image URL
@@ -111,7 +106,6 @@ class EventsService {
   async updateEvent(eventId, updatedDetails, imageFile) {
     try {
       const event = await Event.findOne({ eventId: eventId }); // Find the event to update
-      const oldData = event.toObject();
 
       if (!event) {
         throw new createHttpError(404, "Event not found");
@@ -125,59 +119,19 @@ class EventsService {
       if (imageFile) {
         console.log("Calling uploadImage function...");
 
-        const fileName = `"images/${title}-${datePart}-${timePart}-${imageFile.originalname}"`;
-        imageUrl = await this.uploadImage(imageFile.buffer, fileName);
-        console.log("Image URL:", imageUrl);
-
-        event.imageUrl = imageUrl;
+        const fileName = `images/event/${title}-${datePart}-${timePart}-${imageFile.originalname}`;
+        await ImageService.uploadImage(imageFile.buffer, fileName);
+        imageUrl = fileName;
+        updatedDetails.imageUrl = imageUrl;
       }
 
       event.set(updatedDetails);
 
       await event.save();
 
-      // Log changes
-      for (const key of Object.keys(updatedDetails)) {
-        const oldValue = oldData[key];
-        const newValue = updatedDetails[key];
-
-        // Ensure only changed fields are logged
-        if (oldValue !== newValue) {
-          await ChangeLog.create({
-            modelName: "Event",
-            documentId: event._id,
-            field: key,
-            oldValue,
-            newValue,
-            action: "update",
-          });
-        }
-      }
-
       console.log("Event updated:", event);
       return event;
     } catch (error) {
-      throw error;
-    }
-  }
-
-  async uploadImage(imageBuffer, fileName) {
-    try {
-      console.log(
-        "Uploading image:",
-        fileName,
-        "Buffer size:",
-        imageBuffer.length
-      );
-      const file = bucket.file(fileName);
-      await file.save(imageBuffer);
-
-      const authenticatedURL = `https://storage.cloud.google.com/${bucket.name}/${file.name}`;
-      console.log("Image uploaded. Public URL:", authenticatedURL);
-
-      return authenticatedURL;
-    } catch (error) {
-      console.log("Error uploading image:", error.message);
       throw error;
     }
   }

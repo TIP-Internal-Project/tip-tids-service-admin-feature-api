@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 require("./database");
-const moment = require("moment-timezone");
 
 // Middleware
 const ErrorHandler = require("./middleware/ErrorHandler");
@@ -22,6 +21,7 @@ const googleRouterV4 = require("./routes/GoogleV4Route");
 const TeamMemberPointsRouter = require("./routes/TeamMemberPointsRoute");
 const teamMemberRouter = require("./routes/TeamMemberRoute");
 const TeamRosterRoute = require("./routes/TeamRosterRoute");
+const ImageRoute = require("./routes/ImageRoute");
 const ScheduleJobs = require("./schedule/ScheduleJobs");
 
 const app = express();
@@ -48,6 +48,7 @@ app.use("/teamMember", teamMemberRouter);
 app.use("/teamRoster", TeamRosterRoute);
 app.use("/google", googleRouter);
 app.use("/v4/google", googleRouterV4);
+app.use("/image", ImageRoute);
 
 app.get("/status", (req, res) => {
   // You can perform any checks or logic here to determine the health status
