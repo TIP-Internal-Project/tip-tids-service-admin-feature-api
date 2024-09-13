@@ -61,14 +61,6 @@ const createEvent = async (req, res, next) => {
   try {
     const eventData = req.body;
     const imageFile = req.file;
-    let imageUrl = "";
-
-    if (imageFile) {
-      const imageBuffer = imageFile.buffer;
-      const fileName = `images/${Date.now()}-${imageFile.originalname}`;
-      imageUrl = await EventsService.uploadImage(imageBuffer, fileName);
-      eventData.imageUrl = imageUrl;
-    }
 
     const event = await EventsService.createEvent(eventData, imageFile);
     res.status(200).json(event);
@@ -81,15 +73,13 @@ const updateEvent = async (req, res, next) => {
   const { eventId } = req.params;
   const updatedDetails = req.body;
   const imageFile = req.file;
-  try {
-    if (imageFile) {
-      const imageBuffer = imageFile.buffer;
-      const fileName = `images/${Date.now()}-${imageFile.originalname}`;
-      const imageUrl = await EventsService.uploadImage(imageBuffer, fileName);
-      updatedDetails.imageUrl = imageUrl;
-    }
 
-    const event = await EventsService.updateEvent(eventId, updatedDetails);
+  try {
+    const event = await EventsService.updateEvent(
+      eventId,
+      updatedDetails,
+      imageFile
+    );
     res.status(200).send(event);
   } catch (error) {
     next(error);
